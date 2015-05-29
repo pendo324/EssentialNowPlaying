@@ -1,18 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.Diagnostics;
-using System.Threading;
-using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace OBS_Now_Playing
 {
@@ -67,7 +54,7 @@ namespace OBS_Now_Playing
 
             if (isStarted)
             {
-                sm = new SourceManager(mediaPlayerBox.Text, saveLocation.Text);
+                sm = new SourceManager(mediaPlayerBox.Text, saveLocation.Text, previewBox);
                 sm.newSourceHandler();
             }
             else

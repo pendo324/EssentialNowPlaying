@@ -1,26 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Win32.SafeHandles;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
-using System.Threading;
+using System.Windows.Forms;
 
 namespace OBS_Now_Playing
 {
-    class SpotifyHandler : SourceHandler//, IDisposable
+    class SpotifyHandler : SourceHandler
     {
-        Process[] processlist;
+        private Process[] processlist;
         private string path;
         private bool noSong;
-        private bool bStop = false;
+        private bool bStop;
+        private bool isSpotifyUp;
+        private TextBox preview;
 
-        public SpotifyHandler(string p)
+        public SpotifyHandler(string p, TextBox preview)
         {
             path = p;
             bStop = false;
+            isSpotifyUp = true;
+            this.preview = preview;
         }
 
         private Process findSpotify()
@@ -28,24 +27,34 @@ namespace OBS_Now_Playing
             Process spotify = null;
             processlist = Process.GetProcessesByName("Spotify");
 
-            foreach (Process process in processlist)
+            if (processlist.Length == 0)
             {
-                if (process.ProcessName == "Spotify")
+                isSpotifyUp = false;
+                Debug.WriteLine("\n\n\n\nDEBUG\n\n\n");
+                return null;
+            }
+            else
+            {
+                foreach (Process process in processlist)
                 {
-                    if (process.MainWindowTitle != "")
+                    if (process.ProcessName == "Spotify")
                     {
-                        spotify = process;
-                        //Debug.WriteLine("{0} + {1}", "DEBUG", spotify.MainWindowTitle);
-                        noSong = false;
-                        if (process.MainWindowTitle == "Spotify")
+                        if (process.MainWindowTitle != "")
                         {
-                            noSong = true;
+                            spotify = process;
+                            //Debug.WriteLine("{0} + {1}", "DEBUG", spotify.MainWindowTitle);
+                            noSong = false;
+                            isSpotifyUp = true;
+                            if (process.MainWindowTitle == "Spotify")
+                            {
+                                noSong = true;
+                            }
                         }
                     }
-                }
-                else
-                {
-                    throw new Exception("Spotify Process Not Found");
+                    else
+                    {
+                        isSpotifyUp = false;
+                    }
                 }
             }
 
@@ -57,24 +66,40 @@ namespace OBS_Now_Playing
             while (!bStop)
             {
                 // get the Spotify process (if it exists)
-                Process s = findSpotify();
-
                 System.IO.StreamWriter writer = new System.IO.StreamWriter(path);
 
-                string songName = s.MainWindowTitle;
-                //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
+                try
+                {
+                    Process s = findSpotify();
+
+                    string songName = s.MainWindowTitle;
+                    //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
+                    if (!isSpotifyUp)
+                    {
+                        writer.WriteLine("Spotify not open");
+                        preview.Text = "Spotify not open";
+                    }
+                    else if (noSong)
+                    {
+                        writer.WriteLine("Paused");
+                        preview.Text = "Paused";
+                    }
+                    else
+                    {
+                        preview.Text = songName;
+                        writer.WriteLine(songName);
+                    }
+
+                    writer.Close();
+
+                }
+                catch (NullReferenceException)
+                {
+                    writer.WriteLine("Spotify not open");
+                    preview.Text = "Spotify not open";
+                    writer.Close();
+                }
                 
-                if (noSong)
-                {
-                    writer.WriteLine("Paused");
-                }
-                else
-                {
-                    writer.WriteLine(s.MainWindowTitle);
-                }
-
-                writer.Close();
-
                 await Task.Delay(500);
             }
         }

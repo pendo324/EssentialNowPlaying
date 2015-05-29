@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.previewBox = new System.Windows.Forms.TextBox();
+            this.previewLabel = new System.Windows.Forms.Label();
             this.startButton = new System.Windows.Forms.Button();
             this.saveLocation = new System.Windows.Forms.TextBox();
             this.selectLocation = new System.Windows.Forms.Button();
@@ -58,6 +60,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.previewBox);
+            this.tabPage1.Controls.Add(this.previewLabel);
             this.tabPage1.Controls.Add(this.startButton);
             this.tabPage1.Controls.Add(this.saveLocation);
             this.tabPage1.Controls.Add(this.selectLocation);
@@ -69,6 +73,23 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Players";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // previewBox
+            // 
+            this.previewBox.Location = new System.Drawing.Point(11, 115);
+            this.previewBox.Name = "previewBox";
+            this.previewBox.ReadOnly = true;
+            this.previewBox.Size = new System.Drawing.Size(313, 20);
+            this.previewBox.TabIndex = 5;
+            // 
+            // previewLabel
+            // 
+            this.previewLabel.AutoSize = true;
+            this.previewLabel.Location = new System.Drawing.Point(8, 98);
+            this.previewLabel.Name = "previewLabel";
+            this.previewLabel.Size = new System.Drawing.Size(69, 13);
+            this.previewLabel.TabIndex = 4;
+            this.previewLabel.Text = "Now Playing:";
             // 
             // startButton
             // 
@@ -104,6 +125,7 @@
             // 
             this.mediaPlayerBox.FormattingEnabled = true;
             this.mediaPlayerBox.Items.AddRange(new object[] {
+            "iTunes",
             "Spotify"});
             this.mediaPlayerBox.Location = new System.Drawing.Point(8, 15);
             this.mediaPlayerBox.Name = "mediaPlayerBox";
@@ -158,6 +180,7 @@
             // 
             this.defaultMediaBox.FormattingEnabled = true;
             this.defaultMediaBox.Items.AddRange(new object[] {
+            "iTunes",
             "Spotify"});
             this.defaultMediaBox.Location = new System.Drawing.Point(8, 29);
             this.defaultMediaBox.Name = "defaultMediaBox";
@@ -211,6 +234,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox defaultMediaBox;
         private System.Windows.Forms.Button settingsLocation;
+        private System.Windows.Forms.TextBox previewBox;
+        private System.Windows.Forms.Label previewLabel;
     }
 }
 

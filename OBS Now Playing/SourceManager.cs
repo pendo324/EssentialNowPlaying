@@ -1,31 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace OBS_Now_Playing
 {
     class SourceManager
     {
-        public string source = null;
-        private string path = null;
-        SourceHandler sh;
+        public string source;
+        private string path;
+        private TextBox preview;
+        private SourceHandler sh;
 
-        public SourceManager(string s, string p)
+        public SourceManager(string s, string p, TextBox preview)
         {
             source = s;
             path = p;
+            this.preview = preview;
         }
 
         public void newSourceHandler()
         {
             switch (source) {
                 case "Spotify":
-                    sh = new SpotifyHandler(path);
-                    Task t = sh.pollForSongChanges();
+                    sh = new SpotifyHandler(path, preview);
+                    Task spotify = sh.pollForSongChanges();
                     break;
-               default:
+                case "iTunes":
+                    sh = new iTunesHandler(path, preview);
+                    Task itunes = sh.pollForSongChanges();
+                    break;
+                default:
                     break;
             }
         }
