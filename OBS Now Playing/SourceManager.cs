@@ -41,6 +41,7 @@ namespace OBS_Now_Playing
                     Task winamp = sh.pollForSongChanges();
                     break;
                 case "YouTube":
+                    Task youtube = sh.pollForSongChanges();
                     break;
                 default:
                     break;
