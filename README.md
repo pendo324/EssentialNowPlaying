@@ -6,7 +6,7 @@ So bascially its just something that I made to replace SMG. I'll be adding funct
 Planned players to support:
 * Spotify (done)
 * iTunes (done)
-* winamp
-* VLC
-* MPC-HC
+* winamp (done)
+* VLC (done)
+* MPC-HC (done)
 * YouTube in Chrome or Firefox (depending on how hard it is)
