@@ -10,3 +10,13 @@ Planned players to support:
 * VLC (done)
 * MPC-HC (done)
 * YouTube in Chrome or Firefox (depending on how hard it is)
+
+### Compiling
+To compile using Visual Studio on Windows you are going to need to get a few References
+
+These can be found using Nuget:
+* Costura.Fody
+* Fody
+* Newtonsoft.Json
+
+You will also need access to iTunes.exe to import iTunesLib. Not sure how this works with Mono, but I'd like to hear it.
