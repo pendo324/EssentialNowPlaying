@@ -126,7 +126,10 @@
             this.mediaPlayerBox.FormattingEnabled = true;
             this.mediaPlayerBox.Items.AddRange(new object[] {
             "iTunes",
-            "Spotify"});
+            "MPC-HC",
+            "Spotify",
+            "VLC",
+            "WinAmp"});
             this.mediaPlayerBox.Location = new System.Drawing.Point(8, 15);
             this.mediaPlayerBox.Name = "mediaPlayerBox";
             this.mediaPlayerBox.Size = new System.Drawing.Size(121, 21);
@@ -181,7 +184,10 @@
             this.defaultMediaBox.FormattingEnabled = true;
             this.defaultMediaBox.Items.AddRange(new object[] {
             "iTunes",
-            "Spotify"});
+            "MPC-HC",
+            "Spotify",
+            "VLC",
+            "WinAmp"});
             this.defaultMediaBox.Location = new System.Drawing.Point(8, 29);
             this.defaultMediaBox.Name = "defaultMediaBox";
             this.defaultMediaBox.Size = new System.Drawing.Size(121, 21);
