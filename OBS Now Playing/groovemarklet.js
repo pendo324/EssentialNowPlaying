@@ -109,7 +109,8 @@
     function youtube() {
         var songTitle = $('#eow-title').text();
         var title = "YouTube - " + songTitle;
-
+        var song = songTitle; //unfortunately there is no good way to
+                              //determine an 'artists' or songName here
         return {
             song: song,
             title: title
@@ -133,6 +134,7 @@
     function check_song() {
         var song = identifier();
         set_song(song);
+        sendLocalPOST(identifier, song);
     }
 
     function set_song(song) {
@@ -170,7 +172,7 @@
             .attr('title', 'For more info, click me!')
             .attr('href', '')
             .css('color', 'red')
-            .parent().append('<a href="http://obsproject.com/forum/viewtopic.php?f=22&t=4223">, not supported.</a>');
+            .parent().append('<a href="https://github.com/pendo324/OBS-Now-Playing">, not supported.</a>');
     }
 
     function supported() {
@@ -237,6 +239,17 @@
             }
         });
         start();
+    }
+
+    function sendLocalPOST(player, song) {
+        var url = "http://localhost:13337/";
+        var params = "player=" + player + "&song=" + song;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhr.send(params);
     }
 
     inject_libraries();
