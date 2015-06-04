@@ -242,7 +242,7 @@
     }
 
     function sendLocalPOST(player, song) {
-        var url = "http://localhost:13337/";
+        var url = "//localhost:13337/";
         var params = "player=" + player + "&song=" + song;
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
