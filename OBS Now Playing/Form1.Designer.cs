@@ -129,7 +129,8 @@
             "MPC-HC",
             "Spotify",
             "VLC",
-            "WinAmp"});
+            "WinAmp",
+            "YouTube"});
             this.mediaPlayerBox.Location = new System.Drawing.Point(8, 15);
             this.mediaPlayerBox.Name = "mediaPlayerBox";
             this.mediaPlayerBox.Size = new System.Drawing.Size(121, 21);
@@ -187,7 +188,8 @@
             "MPC-HC",
             "Spotify",
             "VLC",
-            "WinAmp"});
+            "WinAmp",
+            "YouTube"});
             this.defaultMediaBox.Location = new System.Drawing.Point(8, 29);
             this.defaultMediaBox.Name = "defaultMediaBox";
             this.defaultMediaBox.Size = new System.Drawing.Size(121, 21);

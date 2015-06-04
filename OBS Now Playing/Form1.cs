@@ -1,4 +1,7 @@
-﻿using System;
+﻿using NHttp;
+using System;
+using System.IO;
+using System.Net;
 using System.Windows.Forms;
 
 namespace OBS_Now_Playing
@@ -8,7 +11,6 @@ namespace OBS_Now_Playing
         bool isStarted;
         SourceManager sm;
         string settingFileLocation = @".\settings.json";
-        //string settingFileLocation = @"D:\Documents\Visual Studio 2015\Projects\Spotify Now-Playing\Spotify Now-Playing\bin\Debug";
 
         public Form1()
         {

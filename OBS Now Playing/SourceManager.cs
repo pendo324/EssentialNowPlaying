@@ -5,13 +5,16 @@ namespace OBS_Now_Playing
 {
     class SourceManager
     {
+        public bool isWebPlayer;
         public string source;
         private string path;
         private TextBox preview;
         private SourceHandler sh;
+        private WebAppHandler wah;
 
         public SourceManager(string s, string p, TextBox preview)
         {
+            isWebPlayer = false;
             source = s;
             path = p;
             this.preview = preview;
@@ -41,7 +44,9 @@ namespace OBS_Now_Playing
                     Task winamp = sh.pollForSongChanges();
                     break;
                 case "YouTube":
-                    Task youtube = sh.pollForSongChanges();
+                    isWebPlayer = true;
+                    wah = new WebAppHandler(path, preview, "YouTube");
+                    wah.start();
                     break;
                 default:
                     break;
@@ -50,7 +55,13 @@ namespace OBS_Now_Playing
 
         public void stop()
         {
-            sh.stop();
+            if (!isWebPlayer)
+                sh.stop();
+            else
+            {
+                wah.stop();
+            }
+
         }
     }
 }
