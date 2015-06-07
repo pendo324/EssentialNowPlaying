@@ -243,13 +243,17 @@
 
     function sendLocalPOST(player, song) {
         var url = "//localhost:13337/";
-        var params = "player=" + player + "&song=" + song;
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
 
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-        xhr.send(params);
+        $.ajax({
+            type: "POST",
+            crossdomain: true,
+            contentType: "application/json; charset=utf-8",
+            url: ServiceURL,
+            dataType: "jsonp",
+            data: { 'player': player, 'song': song},
+            success: function (data) {
+            }
+        });
     }
 
     inject_libraries();
