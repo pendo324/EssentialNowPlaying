@@ -248,7 +248,7 @@
             type: "POST",
             crossdomain: true,
             contentType: "application/json; charset=utf-8",
-            url: ServiceURL,
+            url: url,
             dataType: "jsonp",
             data: { 'player': player, 'song': song},
             success: function (data) {
