@@ -242,7 +242,7 @@
     }
 
     function sendLocalPOST(player, song) {
-        var url = "//localhost:13337/";
+        var url = "http://localhost:13337/";
 
         $.ajax({
             type: "POST",

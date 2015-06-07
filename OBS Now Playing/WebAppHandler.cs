@@ -32,7 +32,6 @@ namespace OBS_Now_Playing
             this.webPlayer = webPlayer;
             listener = new HttpListener();
             listener.Prefixes.Add("http://*:13337/");
-            listener.Prefixes.Add("https://*:13338/");
         }
 
         public void start()
