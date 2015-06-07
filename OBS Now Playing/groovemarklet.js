@@ -250,7 +250,7 @@
             contentType: "application/json; charset=utf-8",
             url: url,
             dataType: "json",
-            data: { 'player': player, 'song': song},
+            data: {'song': song.title},
             success: function (data) {
             }
         });

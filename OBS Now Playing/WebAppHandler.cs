@@ -42,6 +42,9 @@ namespace OBS_Now_Playing
 
         private void ProcessRequest(HttpListenerContext context)
         {
+            context.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            context.Response.AppendHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
             StreamWriter writer = new System.IO.StreamWriter(path);
 
             // Get the data from the HTTP stream
@@ -61,12 +64,9 @@ namespace OBS_Now_Playing
                     postParams.Add(key, value);
                 }
 
-                if (webPlayer == postParams["player"])
-                {
-                    string songName = postParams["song"];
-                    Console.WriteLine(webPlayer + songName);
-                }
-
+                //string songName = postParams["title"];
+                Console.WriteLine(postParams.ToString());
+                //Console.WriteLine(webPlayer + " " + songName);
             }
 
             byte[] b = Encoding.UTF8.GetBytes("ACK");
