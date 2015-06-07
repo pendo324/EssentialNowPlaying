@@ -249,7 +249,7 @@
             crossdomain: true,
             contentType: "application/json; charset=utf-8",
             url: url,
-            dataType: "jsonp",
+            dataType: "json",
             data: { 'player': player, 'song': song},
             success: function (data) {
             }

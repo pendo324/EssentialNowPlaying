@@ -31,7 +31,7 @@ namespace OBS_Now_Playing
             this.preview = preview;
             this.webPlayer = webPlayer;
             listener = new HttpListener();
-            listener.Prefixes.Add("http://*:13337/");
+            listener.Prefixes.Add("http://localhost:13337/");
         }
 
         public void start()
@@ -64,6 +64,7 @@ namespace OBS_Now_Playing
                 if (webPlayer == postParams["player"])
                 {
                     string songName = postParams["song"];
+                    Console.WriteLine(webPlayer + songName);
                 }
 
             }

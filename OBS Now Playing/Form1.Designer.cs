@@ -127,6 +127,7 @@
             this.mediaPlayerBox.Items.AddRange(new object[] {
             "iTunes",
             "MPC-HC",
+            "Soundcloud",
             "Spotify",
             "VLC",
             "WinAmp",
@@ -186,6 +187,7 @@
             this.defaultMediaBox.Items.AddRange(new object[] {
             "iTunes",
             "MPC-HC",
+            "Soundcloud",
             "Spotify",
             "VLC",
             "WinAmp",

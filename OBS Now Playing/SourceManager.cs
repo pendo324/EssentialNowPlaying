@@ -48,6 +48,11 @@ namespace OBS_Now_Playing
                     wah = new WebAppHandler(path, preview, "YouTube");
                     wah.start();
                     break;
+                case "Soundcloud":
+                    isWebPlayer = true;
+                    wah = new WebAppHandler(path, preview, "soundcloud");
+                    wah.start();
+                    break;
                 default:
                     break;
             }
