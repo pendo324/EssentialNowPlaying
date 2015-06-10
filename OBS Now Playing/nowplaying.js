@@ -114,6 +114,8 @@ require(['jquery'], function () {
     function checkSupport() {
         var website = window.location.host;
 
+        console.log(players);
+
         for (var p in players) {
             if (~website.indexOf(p)) {
                 player = players[p];
