@@ -84,15 +84,18 @@ require(['jquery'], function () {
     // TODO: add the html shit
     function setSong() {
         var song = player();
-        $('.NowPlayingBody').text(song.song);
-        sendLocalPOST(song.webPlayer, song.song);
+        if (song.song) {
+            $('.NowPlayingBody').text(song.song);
+            sendLocalPOST(song.webPlayer, song.song);
+        }
+        else {
+            $('.NowPlayingBody').text("No song playing");
+        }
     }
 
     function start() {
         checkSupport();
-        console.log(supported);
         if (supported) {
-            console.log(supported);
             $('.NowPlayingButton').click(function () {
                 if ($('.NowPlayingButton').text() == 'Start') {
                     $('.NowPlayingButton').text('Stop');
@@ -104,7 +107,7 @@ require(['jquery'], function () {
                 }
             });
             setSong();
-            interval = setInterval(setSong, 500);
+            interval = setInterval(setSong, 2000);
         }
     }
 
@@ -116,9 +119,6 @@ require(['jquery'], function () {
 
     function checkSupport() {
         var website = window.location.host;
-
-        console.log(website);
-        console.log(JSON.stringify(players) + "<----kappa");
 
         for (var p in players) {
             if (!~website.indexOf(p)) {
