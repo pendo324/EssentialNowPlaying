@@ -103,6 +103,7 @@ require(['jquery'], function () {
         addHTML();
         let s = checkSupport();
         if (s) {
+            $('.NowPlayingSupported').text(website + ' is supported!').css('color', 'green');
             $('.NowPlayingButton').click(function () {
                 if ($('.NowPlayingButton').text() == 'Start') {
                     $('.NowPlayingButton').text('Stop');
@@ -113,6 +114,9 @@ require(['jquery'], function () {
                     stop();
                 }
             });
+        }
+        else {
+            $('.NowPlayingSupported').text(website).append(' <a href="https://github.com/pendo324/OBS-Now-Playing">is not supported.</a>').css('color', 'red');
         }
     }
 
@@ -133,15 +137,11 @@ require(['jquery'], function () {
         for (var p in players) {
             if (website.includes(p)) {
                 player = players[p];
-                $('.NowPlayingSupported').text(website + ' is supported!').css('color', 'green');
                 supported = true;
             }
             else {
                 supported = false;
             }
-        }
-        if (supported == false) {
-            $('.NowPlayingSupported').text(website).append(' <a href="https://github.com/pendo324/OBS-Now-Playing">is not supported.</a>').css('color', 'red');
         }
         return supported;
     }
