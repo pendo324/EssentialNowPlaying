@@ -87,6 +87,7 @@ require(['jquery'], function () {
 
     function start() {
         checkSupport();
+        console.log(supported);
         if (supported) {
             console.log(supported);
             $('.NowPlayingButton').click(function () {
