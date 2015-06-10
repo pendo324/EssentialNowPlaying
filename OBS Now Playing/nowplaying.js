@@ -63,6 +63,8 @@ require(['jquery'], function () {
         var songTitle = $('.playbackSoundBadge__title').title;
         var wp = "SoundCloud";
 
+        console.log(songTitle);
+
         return {
             song: songTitle,
             webPlayer: wp
