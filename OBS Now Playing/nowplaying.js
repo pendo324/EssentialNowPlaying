@@ -21,7 +21,7 @@ require(['jquery'], function () {
         "spotify": spotify,
         "soundcloud": soundcloud,
         "youtube": youtube
-    }
+    };
 
     function pandora() {
         var songTitle = "";
@@ -114,7 +114,8 @@ require(['jquery'], function () {
     function checkSupport() {
         var website = window.location.host;
 
-        console.log(players);
+        console.log(website);
+        console.log(players + "<----kappa");
 
         for (var p in players) {
             if (~website.indexOf(p)) {
