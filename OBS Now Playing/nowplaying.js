@@ -131,7 +131,7 @@ require(['jquery'], function () {
         var website = window.location.host;
 
         for (var p in players) {
-            if (!~website.indexOf(p)) {
+            if (~website.indexOf(p)) {
                 player = players[p];
                 console.log('checkSupport: ' + website);
                 $('.NowPlayingSupported').text(website + ' is supported!').css('color', 'green');
