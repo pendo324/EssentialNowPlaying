@@ -117,7 +117,7 @@ require(['jquery'], function () {
         var website = window.location.host;
 
         console.log(website);
-        console.log(players + "<----kappa");
+        console.log(JSON.stringify(players) + "<----kappa");
 
         for (var p in players) {
             if (!~website.indexOf(p)) {
