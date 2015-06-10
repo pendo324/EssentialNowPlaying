@@ -94,7 +94,7 @@ require(['jquery'], function () {
         }
     }
 
-    function start() {
+    function init() {
         if ($('.NowPlayingContainer').length > 0) {
             return;
         }
@@ -104,16 +104,19 @@ require(['jquery'], function () {
             $('.NowPlayingButton').click(function () {
                 if ($('.NowPlayingButton').text() == 'Start') {
                     $('.NowPlayingButton').text('Stop');
-                    stop();
+                    start();
                 }
                 else if ($('.NowPlayingButton').text() == 'Stop') {
                     $('.NowPlayingButton').text('Start');
-                    start();
+                    stop();
                 }
             });
-            setSong();
-            interval = setInterval(setSong, 2000);
         }
+    }
+
+    function start() {
+        setSong();
+        interval = setInterval(setSong, 2000);
     }
 
     function stop() {
@@ -159,6 +162,6 @@ require(['jquery'], function () {
             }
         });
     }
-    start();
+    init();
 
 });
