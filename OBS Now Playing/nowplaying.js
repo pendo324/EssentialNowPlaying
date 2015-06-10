@@ -122,7 +122,7 @@ require(['jquery'], function () {
     }
 
     function stop() {
-        if (interval != null) {
+        if (interval != null) { 
             clearInterval(interval);
         }
     }
@@ -133,7 +133,7 @@ require(['jquery'], function () {
         for (var p in players) {
             if (website.includes(p)) {
                 player = players[p];
-                console.log('True/false: ' + ~website.indexOf(p) + ' checkSupportIf: ' + website);
+                console.log('True/false: ' + website.includes(p) + ' checkSupportIf: ' + website + ' supported?: ' + supported);
                 $('.NowPlayingSupported').text(website + ' is supported!').css('color', 'green');
                 supported = true;
             }
