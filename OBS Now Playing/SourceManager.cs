@@ -50,7 +50,7 @@ namespace OBS_Now_Playing
                     break;
                 case "Soundcloud":
                     isWebPlayer = true;
-                    wah = new WebAppHandler(path, preview, "soundcloud");
+                    wah = new WebAppHandler(path, preview, "Soundcloud");
                     wah.start();
                     break;
                 default:

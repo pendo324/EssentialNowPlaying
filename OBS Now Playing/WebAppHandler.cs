@@ -50,7 +50,7 @@ namespace OBS_Now_Playing
             // Get the data from the HTTP stream
             var body = new StreamReader(context.Request.InputStream).ReadToEnd();
 
-            Console.WriteLine("\n DEBUG: " + body);
+            //Console.WriteLine("\n DEBUG: " + body);
 
             if (body.Length > 0)
             {
@@ -64,18 +64,19 @@ namespace OBS_Now_Playing
                     postParams.Add(key, value);
                 }
 
-                //string songName = postParams["title"];
-                Console.WriteLine(postParams.ToString());
-                //Console.WriteLine(webPlayer + " " + songName);
+                string songName = postParams["song"];
+                string[] songs;
+
+                songs = songName.Split(new string[] { (" - ") }, StringSplitOptions.None);
+
+                //Console.WriteLine("\n" + songs[0]);
+
+                if (songs[0] == webPlayer)
+                {
+                    Console.WriteLine(songName);
+                }                
             }
 
-            byte[] b = Encoding.UTF8.GetBytes("ACK");
-            context.Response.StatusCode = 200;
-            context.Response.KeepAlive = false;
-            context.Response.ContentLength64 = b.Length;
-
-            var output = context.Response.OutputStream;
-            output.Write(b, 0, b.Length);
             context.Response.Close();
             writer.Close();
         }
