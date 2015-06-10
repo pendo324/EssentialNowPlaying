@@ -5,6 +5,7 @@ var player;
 var interval;
 var players;
 var supported;
+var website;
 
 require.config({
     paths: {
@@ -132,7 +133,7 @@ require(['jquery'], function () {
     }
 
     function checkSupport() {
-        var website = window.location.host;
+        website = window.location.host;
 
         for (var p in players) {
             if (website.includes(p)) {
