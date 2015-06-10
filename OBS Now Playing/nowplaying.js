@@ -84,6 +84,7 @@ require(['jquery'], function () {
     // TODO: add the html shit
     function setSong() {
         var song = player();
+        console.log(song.song);
         if (song.song !== '') {
             $('.NowPlayingBody').text(song.song);
             sendLocalPOST(song.webPlayer, song.song);
