@@ -95,11 +95,11 @@ require(['jquery'], function () {
             console.log(supported);
             $('.NowPlayingButton').click(function () {
                 if ($('.NowPlayingButton').text() == 'Start') {
-                    $('.NowPlayingButton').text() = 'Stop';
+                    $('.NowPlayingButton').text('Stop');
                     stop();
                 }
                 else if ($('.NowPlayingButton').text() == 'Stop') {
-                    $('.NowPlayingButton').text() = 'Start';
+                    $('.NowPlayingButton').text('Start');
                     start();
                 }
             });
