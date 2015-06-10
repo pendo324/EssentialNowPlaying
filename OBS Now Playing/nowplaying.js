@@ -88,7 +88,7 @@ require(['jquery'], function () {
     function setSong() {
         var song = player();
         console.log('setSong: ' + player);
-        if (song.song !== '') {
+        if (song.song != '') {
             $('.NowPlayingBody').text(song.song);
             sendLocalPOST(song.webPlayer, song.song);
         }
@@ -103,6 +103,8 @@ require(['jquery'], function () {
         }
         addHTML();
         var s = checkSupport();
+        console.log(s);
+        console.log(player);
         if (s) {
             $('.NowPlayingSupported').text(website + ' is supported!').css('color', 'green');
             $('.NowPlayingButton').click(function () {
