@@ -3,6 +3,8 @@ var requirejs, require, define; !function (ba) { function G(e) { return "[object
 "use strict";
 var player;
 var interval;
+var players;
+var supported;
 
 require.config({
     paths: {
@@ -13,9 +15,9 @@ require.config({
 require(['jquery'], function () {
     var $ = window.jQuery;
 
-    var supported = false;
+    supported = false;
 
-    var players = {
+    players = {
         "pandora": pandora,
         "play": play,
         "spotify": spotify,
