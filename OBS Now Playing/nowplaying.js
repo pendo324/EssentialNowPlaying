@@ -118,7 +118,7 @@ require(['jquery'], function () {
         console.log(players + "<----kappa");
 
         for (var p in players) {
-            if (~website.indexOf(p)) {
+            if (!~website.indexOf(p)) {
                 player = players[p];
                 $('.NowPlayingSupported').text(website + ' is supported!').css('color', 'green');
                 supported = true;
