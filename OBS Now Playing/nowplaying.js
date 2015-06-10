@@ -105,7 +105,7 @@ require(['jquery'], function () {
         var s = checkSupport();
         console.log(s);
         console.log(player);
-        if (s) {
+        if (!s) {
             $('.NowPlayingSupported').text(website + ' is supported!').css('color', 'green');
             $('.NowPlayingButton').click(function () {
                 if ($('.NowPlayingButton').text() == 'Start') {
