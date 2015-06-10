@@ -95,6 +95,10 @@ require(['jquery'], function () {
     }
 
     function start() {
+        if ($('.NowPlayingContainer').length > 0) {
+            return;
+        }
+        addHTML();
         checkSupport();
         if (supported) {
             $('.NowPlayingButton').click(function () {
@@ -155,7 +159,6 @@ require(['jquery'], function () {
             }
         });
     }
-    addHTML();
     start();
 
 });
