@@ -23,6 +23,21 @@ namespace OBS_Now_Playing
         private TextBox preview;
         HttpListener listener;
 
+        delegate void SetPreviewCallback(string text);
+
+        public void SetPreview(string text)
+        {
+            if (this.preview.InvokeRequired)
+            {
+                SetPreviewCallback d = new SetPreviewCallback(SetPreview);
+                preview.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                preview.Text = text;
+            }
+        }
+
         public WebAppHandler(string p, TextBox preview, string webPlayer)
         {
             path = p;
@@ -75,8 +90,15 @@ namespace OBS_Now_Playing
 
                 if (wp == webPlayer)
                 {
+                    writer.WriteLine(songName);
+                    SetPreview(songName);
                     Console.WriteLine(songName);
-                }                
+                }
+                else
+                {
+                    writer.WriteLine("{0} not open.", wp);
+                    SetPreview(string.Format("{0} not open.", wp));
+                }
             }
 
             context.Response.Close();
