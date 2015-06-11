@@ -62,7 +62,7 @@ require(['jquery'], function () {
 
     function soundcloud() {
         var songTitle = $(document).find('.playbackSoundBadge__title').attr('title');
-        var wp = "SoundCloud";
+        var wp = "Soundcloud";
 
         console.log(songTitle + '????????????');
 
@@ -153,6 +153,7 @@ require(['jquery'], function () {
     }
 
     function sendLocalPOST(player, song) {
+        console.log("Sending: " + player + ", " + song);
         var url = "http://localhost:13337/";
 
         $.ajax({
