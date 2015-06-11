@@ -163,7 +163,7 @@ require(['jquery'], function () {
             contentType: "application/json; charset=utf-8",
             url: url,
             dataType: "json",
-            data: { 'song': song.song },
+            data: { 'song': song },
             success: function (data) {
             }
         });
