@@ -49,7 +49,7 @@ require(['jquery'], function () {
     }
 
     function spotify() {
-        var artist = $(document).find('.playbackSoundBadge__title').attr('title');
+        var artist = $(document).find('#track-name:nth-child(1)').text();
         var song = "";
         var songTitle = "";
         var wp = "";
@@ -61,7 +61,7 @@ require(['jquery'], function () {
     }
 
     function soundcloud() {
-        var songTitle = $('.playbackSoundBadge__title').title;
+        var songTitle = $(document).find('.playbackSoundBadge__title').attr('title');
         var wp = "SoundCloud";
 
         console.log(songTitle + '????????????');
