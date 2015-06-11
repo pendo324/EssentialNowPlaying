@@ -64,14 +64,16 @@ namespace OBS_Now_Playing
                     postParams.Add(key, value);
                 }
 
+                string wp = postParams["player"];
                 string songName = postParams["song"];
+
                 string[] songs;
 
                 songs = songName.Split(new string[] { (" - ") }, StringSplitOptions.None);
 
                 //Console.WriteLine("\n" + songs[0]);
 
-                if (songs[0] == webPlayer)
+                if (wp == webPlayer)
                 {
                     Console.WriteLine(songName);
                 }                
