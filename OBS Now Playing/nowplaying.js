@@ -87,7 +87,6 @@ require(['jquery'], function () {
     // TODO: add the html shit
     function setSong() {
         var song = player();
-        console.log('setSong: ' + player);
         if (song.song != '') {
             $('.NowPlayingBody').text(song.song);
             sendLocalPOST(song.webPlayer, song.song);
@@ -103,9 +102,8 @@ require(['jquery'], function () {
         }
         addHTML();
         var s = checkSupport();
-        console.log(s);
-        console.log(player);
         if (!s) {
+            setSong();
             $('.NowPlayingSupported').text(website + ' is supported!').css('color', 'green');
             $('.NowPlayingButton').click(function () {
                 if ($('.NowPlayingButton').text() == 'Start') {
