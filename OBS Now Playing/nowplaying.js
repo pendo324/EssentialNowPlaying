@@ -37,8 +37,8 @@ require(['jquery'], function () {
     }
 
     function play() {
-        var artist = $("#player-artist").text();
-        var song = $("#player-song-title").text();
+        var artist = $(document).find('#player-artist').text();
+        var song = $(document).find('#player-song-title').text();
         var songTitle = artist + " - " + song;
         var wp = "Google Play";
 
@@ -49,7 +49,7 @@ require(['jquery'], function () {
     }
 
     function spotify() {
-        var artist = $("#track-name:nth-child(1)").text();
+        var artist = $(document).find('.playbackSoundBadge__title').attr('title');
         var song = "";
         var songTitle = "";
         var wp = "";
