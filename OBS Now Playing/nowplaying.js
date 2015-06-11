@@ -102,6 +102,7 @@ require(['jquery'], function () {
         }
         addHTML();
         var s = checkSupport();
+        console.log(s);
         if (s) {
             setSong();
             $('.NowPlayingSupported').text(website + ' is supported!').css('color', 'green');
