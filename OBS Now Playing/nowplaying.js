@@ -33,7 +33,7 @@ require(['jquery'], function () {
         return {
             song: songTitle,
             webPlayer: wp
-        }
+        };
     }
 
     function play() {
@@ -57,7 +57,7 @@ require(['jquery'], function () {
         return {
             song: songTitle,
             webPlayer: wp
-        }
+        };
     }
 
     function soundcloud() {
@@ -69,7 +69,7 @@ require(['jquery'], function () {
         return {
             song: songTitle,
             webPlayer: wp
-        }
+        };
     }
 
     function youtube() {
