@@ -64,8 +64,6 @@ require(['jquery'], function () {
         var songTitle = $(document).find('.playbackSoundBadge__title').attr('title');
         var wp = "Soundcloud";
 
-        console.log(songTitle + '????????????');
-
         return {
             song: songTitle,
             webPlayer: wp
@@ -102,7 +100,6 @@ require(['jquery'], function () {
         }
         addHTML();
         var s = checkSupport();
-        console.log(s);
         if (s) {
             setSong();
             $('.NowPlayingSupported').text(website + ' is supported!').css('color', 'green');
@@ -137,14 +134,9 @@ require(['jquery'], function () {
         website = window.location.host;
 
         for (var p in players) {
-            console.log(website + ' includes ' + p);
             if (website.includes(p)) {
-                console.log('I\'m included!');
                 player = players[p];
                 supported = true;
-            }
-            else {
-                supported = false;
             }
         }
         return supported;
@@ -156,7 +148,6 @@ require(['jquery'], function () {
     }
 
     function sendLocalPOST(player, song) {
-        console.log("Sending: " + player + ", " + song);
         var url = "http://localhost:13337/";
 
         $.ajax({
