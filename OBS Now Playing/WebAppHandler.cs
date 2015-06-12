@@ -17,7 +17,6 @@ namespace OBS_Now_Playing
         Thread pr;
         private string path;
         private string webPlayer;
-        private bool noSong;
         private bool bStop;
         private bool isPluginOpen;
         private TextBox preview;

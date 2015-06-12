@@ -53,6 +53,16 @@ namespace OBS_Now_Playing
                     wah = new WebAppHandler(path, preview, "Soundcloud");
                     wah.start();
                     break;
+                case "Pandora":
+                    isWebPlayer = true;
+                    wah = new WebAppHandler(path, preview, "Pandora");
+                    wah.start();
+                    break;
+                case "Spotify (web)":
+                    isWebPlayer = true;
+                    wah = new WebAppHandler(path, preview, "Spotify");
+                    wah.start();
+                    break;
                 default:
                     break;
             }

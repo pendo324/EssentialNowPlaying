@@ -9,7 +9,6 @@ namespace OBS_Now_Playing
     {
         private Process[] processlist;
         private string path;
-        private bool noSong;
         private bool isItunesUp;
         private bool bStop;
         private TextBox preview;

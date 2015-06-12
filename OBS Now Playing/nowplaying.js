@@ -30,7 +30,7 @@ require(['jquery'], function () {
         var artist, song, songTitle;
         var wp = "Pandora";
 
-        if ($(document).find('.playerBarSong').text().length > 0) {
+        if ($(document).find('.playerBarSong').text() === undefined || $(document).find('.playerBarSong').text() === null) {
             artist = $(document).find('.playerBarArtist').text();
             song = $(document).find('.playerBarSong').text();
             songTitle = artist + ' - ' + song;
@@ -49,7 +49,7 @@ require(['jquery'], function () {
         var artist, song, songTitle;
         var wp = "Google Play";
 
-        if ($(document).find('#player-artist').text().length > 0) {
+        if ($(document).find('#player-artist').text() === undefined || $(document).find('#player-artist').text() === null) {
             artist = $(document).find('#player-artist').text();
             song = $(document).find('#player-song-title').text();
             songTitle = artist + " - " + song;
@@ -87,7 +87,7 @@ require(['jquery'], function () {
     function soundcloud() {
         var songTitle;
         var wp = "Soundcloud";
-        if ($(document).find('.playbackSoundBadge__title').attr('title').length > 0) {
+        if ($(document).find('.playbackSoundBadge__title').attr('title') === undefined || $(document).find('.playbackSoundBadge__title').attr('title') === null) {
             songTitle = $(document).find('.playbackSoundBadge__title').attr('title');
         }
         else {
@@ -105,7 +105,7 @@ require(['jquery'], function () {
         var songTitle;
         var wp = "YouTube";
 
-        if ($(document).find('#eow-title').text().length) {
+        if ($(document).find('#eow-title').text() === undefined || $(document).find('#eow-title').text() === null) {
             songTitle = $(document).find('#eow-title').text();
         }
         else {
