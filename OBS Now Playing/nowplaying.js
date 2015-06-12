@@ -31,12 +31,12 @@ require(['jquery'], function () {
         var wp = "Pandora";
 
         if ($(document).find('.playerBarSong').text() === undefined || $(document).find('.playerBarSong').text() === null) {
+            songTitle = 'Paused';
+        }
+        else {
             artist = $(document).find('.playerBarArtist').text();
             song = $(document).find('.playerBarSong').text();
             songTitle = artist + ' - ' + song;
-        }
-        else {
-            songTitle = 'Paused';
         }
 
         return {
@@ -50,12 +50,12 @@ require(['jquery'], function () {
         var wp = "Google Play";
 
         if ($(document).find('#player-artist').text() === undefined || $(document).find('#player-artist').text() === null) {
+            songTitle = 'Paused';
+        }
+        else {
             artist = $(document).find('#player-artist').text();
             song = $(document).find('#player-song-title').text();
             songTitle = artist + " - " + song;
-        }
-        else {
-            songTitle = 'Paused';
         }
 
         return {
@@ -88,10 +88,10 @@ require(['jquery'], function () {
         var songTitle;
         var wp = "Soundcloud";
         if ($(document).find('.playbackSoundBadge__title').attr('title') === undefined || $(document).find('.playbackSoundBadge__title').attr('title') === null) {
-            songTitle = $(document).find('.playbackSoundBadge__title').attr('title');
+            songTitle = 'Paused';
         }
         else {
-            songTitle = 'Paused';
+            songTitle = $(document).find('.playbackSoundBadge__title').attr('title');
         }
 
         return {
@@ -106,10 +106,10 @@ require(['jquery'], function () {
         var wp = "YouTube";
 
         if ($(document).find('#eow-title').text() === undefined || $(document).find('#eow-title').text() === null) {
-            songTitle = $(document).find('#eow-title').text();
+            songTitle = 'Paused';
         }
         else {
-            songTitle = 'Paused';
+            songTitle = $(document).find('#eow-title').text();
         }
 
         return {
