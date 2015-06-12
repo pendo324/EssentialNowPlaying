@@ -20,7 +20,7 @@ Planned players to support:
 * Nothing at the moment, just stability fixes
 
 ### Usage
-To use the WebApps, you'll need to bookmark the nowplaying.js script that's also on this repo. I've uploaded nowplaying.min.js to my own server at http://topkek.us/nowplaying.min.js. This is what your bookmark should end up looking like:
+To use the WebApps, you'll need to bookmark the nowplaying.js script that's also on this repo. I've uploaded nowplaying.min.js to rawgit at https//cdn.rawgit.com/pendo324/OBS-Now-Playing/7832b96455d1ed5fe7b60e004b74c011d9db5cda/OBS%20Now%20Playing/nowplaying.min.js. This is what your bookmark should end up looking like:
 
 javascript:(function(){document.body.appendChild(document.createElement("script")).src="//cdn.rawgit.com/pendo324/OBS-Now-Playing/7832b96455d1ed5fe7b60e004b74c011d9db5cda/OBS%20Now%20Playing/nowplaying.min.js"})()
 
