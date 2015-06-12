@@ -172,7 +172,7 @@ require(['jquery'], function () {
         website = window.location.host;
 
         for (var p in players) {
-            if (website.includes(p)) {
+            if (website.indexOf(p) > -1) { //website.includes(p), works in Chrome/Opera and Firefox 40
                 player = players[p];
                 supported = true;
             }
