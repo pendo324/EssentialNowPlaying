@@ -145,8 +145,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
-    <Content Include="groovemarklet.js" />
     <Content Include="nowplaying.js" />
+    <Content Include="nowplaying.min.js" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="iTunesLib">

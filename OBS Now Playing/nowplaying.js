@@ -27,10 +27,17 @@ require(['jquery'], function () {
     };
 
     function pandora() {
-        var artist = $(document).find('.playerBarArtist').text();
-        var song = $(document).find('.playerBarSong').text();
-        var songTitle = artist + ' - ' + song;
+        var artist, song, songTitle;
         var wp = "Pandora";
+
+        if ($(document).find('.playerBarSong').text().length > 0) {
+            artist = $(document).find('.playerBarArtist').text();
+            song = $(document).find('.playerBarSong').text();
+            songTitle = artist + ' - ' + song;
+        }
+        else {
+            songTitle = 'Paused';
+        }
 
         return {
             song: songTitle,
@@ -39,10 +46,17 @@ require(['jquery'], function () {
     }
 
     function play() {
-        var artist = $(document).find('#player-artist').text();
-        var song = $(document).find('#player-song-title').text();
-        var songTitle = artist + " - " + song;
+        var artist, song, songTitle;
         var wp = "Google Play";
+
+        if ($(document).find('#player-artist').text().length > 0) {
+            artist = $(document).find('#player-artist').text();
+            song = $(document).find('#player-song-title').text();
+            songTitle = artist + " - " + song;
+        }
+        else {
+            songTitle = 'Paused';
+        }
 
         return {
             song: songTitle,
@@ -51,12 +65,10 @@ require(['jquery'], function () {
     }
 
     function spotify() {
-        var artist;
-        var song;
-        var songTitle;
+        var artist, song, songTitle;
         var wp = "Spotify";
-
         var split = $('title').text().split(' - ');
+
         if (split.length == 3) {
             artist = split[1]
             song = split[0];
@@ -73,8 +85,14 @@ require(['jquery'], function () {
     }
 
     function soundcloud() {
-        var songTitle = $(document).find('.playbackSoundBadge__title').attr('title');
+        var songTitle;
         var wp = "Soundcloud";
+        if ($(document).find('.playbackSoundBadge__title').attr('title').length > 0) {
+            songTitle = $(document).find('.playbackSoundBadge__title').attr('title');
+        }
+        else {
+            songTitle = 'Paused';
+        }
 
         return {
             song: songTitle,
@@ -82,11 +100,19 @@ require(['jquery'], function () {
         };
     }
 
+    //unfortunately there is no good way to determine an 'artist'
     function youtube() {
-        var songTitle = $('#eow-title').text();
+        var songTitle;
         var wp = "YouTube";
-        var song = songTitle; //unfortunately there is no good way to
-        return {              //determine an 'artists' or songName here
+
+        if ($(document).find('#eow-title').text().length) {
+            songTitle = $(document).find('#eow-title').text();
+        }
+        else {
+            songTitle = 'Paused';
+        }
+
+        return {
             song: songTitle,
             webPlayer: wp
         };
