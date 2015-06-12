@@ -4,13 +4,13 @@ A now playing tool intended to be used with OBS.
 So bascially its just something that I made to replace SMG. I'll be adding functionality for soem more major media players in the coming weeks. If anyone actually sees this and wants to request a player, just make an issue. 
 
 Currently supported:
-  Desktop (Windows [tested], *NIX [untested]):
+  - Desktop (Windows [tested], NIX [untested]):
     * Spotify
     * iTunes
     * winamp
     * VLC
     * MPC-HC
-  WebApps:
+  - WebApps:
     * Spotify web player (play.spotify.com)
     * YouTube
     * Pandora
