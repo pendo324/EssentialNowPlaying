@@ -20,10 +20,10 @@ Planned players to support:
 * Nothing at the moment, just stability fixes
 
 ### Usage
-To use the WebApps, you'll need to bookmark the nowplaying.js script that's also on this repo. I've uploaded nowplaying.min.js to rawgit at https//cdn.rawgit.com/pendo324/OBS-Now-Playing/7832b96455d1ed5fe7b60e004b74c011d9db5cda/OBS%20Now%20Playing/nowplaying.min.js. This is what your bookmark should end up looking like:
-
+To use the WebApps, you'll need to bookmark the nowplaying.js script that's also on this repo. This is what your bookmark should end up looking like:
+```
 javascript:(function(){document.body.appendChild(document.createElement("script")).src="//cdn.rawgit.com/pendo324/OBS-Now-Playing/7832b96455d1ed5fe7b60e004b74c011d9db5cda/OBS%20Now%20Playing/nowplaying.min.js"})()
-
+```
 Once you load the .js script you will notice a shield in the address bar (on Chrome at least). Just click it and allow the loading of unsafe scripts.
 
 Unfortunately, due to the nature of how SSL binding works with .NET, I was unable to get an SSL certificate for this application, meaning this will send data using HTTP, not HTTPS. All the script does is sends data to a localhost server, so I would deem it safe. In the future I may add HTTPS support, it would be trivial on the javascript side tbh.
