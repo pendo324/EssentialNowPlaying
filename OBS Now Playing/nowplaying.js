@@ -55,7 +55,7 @@ require(['jquery'], function () {
         var wp = "Spotify";
 
         var split = $('title').text().split(' - ');
-        if (split.length == 2) {
+        if (split.length == 3) {
             artist = split[1]
             song = split[0];
             songTitle = artist + ' ' + song;
@@ -153,7 +153,7 @@ require(['jquery'], function () {
     }
 
     function addHTML() {
-        var html = "<div class=NowPlayingContainer><style>.NowPlayingContainer{background-color:#343434;border:2px solid #3c3c3c;color:#f5f5f5;position:fixed;bottom:130px;right:30px;width:300px;height:200px;z-index:10000;}.NowPlayingHeader{margin:10px;line-height:18px;font-family:arial;font-size:16px}.NowPlayingBody{margin-top:15px;margin-left:10px;line-height:16px;font-family:arial;font-size:14px}.NowPlayingSupported{margin-left:65px;margin-top:-20px;line-height:16px;font-family:arial;font-size:14px}.NowPlayingSupported a:link{color:#09F}.NowPlayingSupported a:visited{color: #CC0099;}.NowPlayingButton{margin-left:10px;line-height:16px;font-family:arial;font-size:14px}</style><div><div class=NowPlayingHeader>OBS Now Playing</div><button class=NowPlayingButton>Start</button><div class=NowPlayingSupported></div><div class=NowPlayingBody>No song playing.</div></div></div>";
+        var html = "<div class=NowPlayingContainer><style>.NowPlayingContainer{background-color:#343434;border:2px solid #3c3c3c;color:#f5f5f5;position:fixed;bottom:50px;right:30px;width:300px;height:130px;z-index:10000;}.NowPlayingHeader{margin:10px;line-height:18px;font-family:arial;font-size:16px}.NowPlayingBody{margin-top:15px;margin-left:10px;line-height:16px;font-family:arial;font-size:14px}.NowPlayingSupported{margin-left:65px;margin-top:-20px;line-height:16px;font-family:arial;font-size:14px}.NowPlayingSupported a:link{color:#09F}.NowPlayingSupported a:visited{color: #CC0099;}.NowPlayingButton{margin-left:10px;line-height:16px;font-family:arial;font-size:14px}</style><div><div class=NowPlayingHeader>OBS Now Playing</div><button class=NowPlayingButton>Start</button><div class=NowPlayingSupported></div><div class=NowPlayingBody>No song playing.</div></div></div>";
         $('body').append(html);
     }
 
