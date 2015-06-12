@@ -20,8 +20,8 @@ require(['jquery'], function () {
 
     players = {
         "pandora": pandora,
-        "play": play,
-        "spotify": spotify,
+        "play.google.com": play,
+        "play.spotify.com0": spotify,
         "soundcloud": soundcloud,
         "youtube": youtube
     };
@@ -49,10 +49,20 @@ require(['jquery'], function () {
     }
 
     function spotify() {
-        var artist = $(document).find('#track-name:nth-child(1)').text();
-        var song = "";
-        var songTitle = "";
-        var wp = "";
+        var artist;
+        var song;
+        var songTitle;
+        var wp = "Spotify";
+
+        var split = $('title').text().split(' - ');
+        if (split.length == 2) {
+            artist = split[1]
+            song = split[0];
+            songTitle = artist + ' ' + song;
+        }
+        else {
+            songTitle = "Paused";
+        }
 
         return {
             song: songTitle,
