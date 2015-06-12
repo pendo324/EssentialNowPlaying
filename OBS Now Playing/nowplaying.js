@@ -109,7 +109,7 @@ require(['jquery'], function () {
             songTitle = 'Paused';
         }
         else {
-            songTitle = $(document).find('#eow-title').text();
+            songTitle = $(document).find('#eow-title').text().trim();
         }
 
         return {

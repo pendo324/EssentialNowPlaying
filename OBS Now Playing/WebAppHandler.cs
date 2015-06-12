@@ -85,13 +85,10 @@ namespace OBS_Now_Playing
 
                 songs = songName.Split(new string[] { (" - ") }, StringSplitOptions.None);
 
-                //Console.WriteLine("\n" + songs[0]);
-
                 if (wp == webPlayer)
                 {
                     writer.WriteLine(songName);
                     SetPreview(songName);
-                    Console.WriteLine(songName);
                 }
                 else
                 {
