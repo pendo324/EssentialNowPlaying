@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace OBS_Now_Playing
 {
-    // Event driven Handler for things that use the modified groovemarklet js plugin
+    // Event driven Handler for things that use the nowplaying.js script
     class WebAppHandler
     {
         Thread pr;
