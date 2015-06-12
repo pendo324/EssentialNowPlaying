@@ -27,7 +27,9 @@ require(['jquery'], function () {
     };
 
     function pandora() {
-        var songTitle = "";
+        var artist = $(document).find('.playerBarArtist').text();
+        var song = $(document).find('.playerBarSong').text();
+        var songTitle = artist + song;
         var wp = "Pandora";
 
         return {
