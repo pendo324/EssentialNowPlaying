@@ -125,7 +125,8 @@ require(['jquery'], function () {
         var song = player();
         if (song.song != '') {
             $('.NowPlayingBody').text(song.song);
-            sendLocalPOST(song.webPlayer, song.song);
+            //sendLocalPOST(song.webPlayer, song.song);
+            postToIframe({ player: song.webPlayer, song: song.song });
         }
         else {
             $('.NowPlayingBody').text("No song playing");
@@ -199,6 +200,18 @@ require(['jquery'], function () {
             }
         });
     }
+
+    function postToIframe(data) {
+        var url = "http://localhost:13337/";
+        var target = "";
+
+        $('body').append('<form action="' + url + '" method="post" target="' + target + '" id="postToIframe"></form>');
+        $.each(data, function (n, v) {
+            $('#postToIframe').append('<input type="hidden" name="' + n + '" value="' + v + '" />');
+        });
+        $('#postToIframe').submit().remove();
+    }
+
     init();
 
 });
