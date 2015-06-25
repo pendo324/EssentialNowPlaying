@@ -207,7 +207,7 @@ require(['jquery'], function () {
 
         $('body').append('<form action="' + url + '" method="post" target="' + target + '" id="postToIframe"></form>');
         $.each(data, function (n, v) {
-            $('#postToIframe').append('<input type="hidden" name="' + n + '" value="' + v + '" />');
+            $('#postToIframe').append('<input sandbox="allow-forms allow-scripts" type="hidden" name="' + n + '" value="' + v + '" />');
         });
         $('#postToIframe').submit().remove();
     }
