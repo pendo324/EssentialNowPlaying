@@ -64,7 +64,7 @@ namespace OBS_Now_Playing
             // Get the data from the HTTP stream
             var body = new StreamReader(context.Request.InputStream).ReadToEnd();
 
-            //Console.WriteLine("\n DEBUG: " + body);
+            Console.WriteLine("\n DEBUG: " + body);
 
             if (body.Length > 0)
             {
