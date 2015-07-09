@@ -125,8 +125,8 @@ require(['jquery'], function () {
         var song = player();
         if (song.song != '') {
             $('.NowPlayingBody').text(song.song);
-            //sendLocalPOST(song.webPlayer, song.song);
-            postToIframe({ player: song.webPlayer, song: song.song });
+            sendLocalPOST(song.webPlayer, song.song);
+            //postToIframe({ player: song.webPlayer, song: song.song });
         }
         else {
             $('.NowPlayingBody').text("No song playing");
