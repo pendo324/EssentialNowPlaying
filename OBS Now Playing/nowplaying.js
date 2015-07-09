@@ -187,8 +187,10 @@ require(['jquery'], function () {
     }
 
     function sendLocalPOST(player, song) {
-        var url = "//pls.topkek.us"; //or any other proxy site that redirects to localhost:13337
-
+        var url = "https://pls.topkek.us"; //or any other proxy site that redirects to localhost:13337
+        if (document.location.protocol == 'http:') {
+            url = "http://127.0.0.1:13337";
+        }
         $.ajax({
             type: "POST",
             crossdomain: true,
@@ -203,6 +205,9 @@ require(['jquery'], function () {
     
     function postToIframe(data) {
         var url = "https://pls.topkek.us"; //or any other proxy site that redirects to localhost:13337
+        if (document.location.protocol == 'http:') {
+            url = "http://127.0.0.1:13337";
+        }
         var target = "npiframe";
 
         $('body').append('<form action="' + url + '" method="post" target="' + target + '" id="postToIframe"></form>');
