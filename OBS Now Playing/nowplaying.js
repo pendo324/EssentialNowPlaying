@@ -215,6 +215,8 @@ require(['jquery'], function () {
             $('#postToIframe').append('<input type="hidden" name="' + n + '" value="' + v + '" />');
         });
         $('#postToIframe').submit().remove();
+
+        console.log(data);
     }
 
     init();
