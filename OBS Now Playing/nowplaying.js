@@ -202,7 +202,7 @@ require(['jquery'], function () {
     }
     
     function postToIframe(data) {
-        var url = "//pls.topkek.us"; //or any other proxy site that redirects to localhost:13337
+        var url = "https://pls.topkek.us"; //or any other proxy site that redirects to localhost:13337
         var target = "npiframe";
 
         $('body').append('<form action="' + url + '" method="post" target="' + target + '" id="postToIframe"></form>');
