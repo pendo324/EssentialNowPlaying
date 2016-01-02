@@ -13,6 +13,7 @@ namespace OBS_Now_Playing
         private bool isVLCUp;
         private bool bStop;
         private TextBox preview;
+        private string oldName = null;
 
         public VLCHandler(string p, TextBox preview)
         {
@@ -85,8 +86,24 @@ namespace OBS_Now_Playing
                     }
                     else
                     {
-                        preview.Text = songName;
-                        writer.WriteLine(songName);
+                        // only update the song if the song changes
+                        // strip some extra information from the string, like the theme and the program name
+                        if (oldName != null)
+                        {
+                            if (oldName != songName)
+                            {
+                                preview.Text = songName;
+                                writer.WriteLine(songName);
+                                oldName = songName;
+                            }
+                        }
+                        else
+                        {
+                            // first run
+                            preview.Text = songName;
+                            writer.WriteLine(songName);
+                            oldName = songName;
+                        }
                     }
 
                     writer.Close();

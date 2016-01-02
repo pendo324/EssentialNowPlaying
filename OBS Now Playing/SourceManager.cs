@@ -31,6 +31,10 @@ namespace OBS_Now_Playing
                     sh = new iTunesHandler(path, preview);
                     Task itunes = sh.pollForSongChanges();
                     break;
+                case "foobar2000":
+                    sh = new FoobarHandler(path, preview);
+                    Task foobar = sh.pollForSongChanges();
+                    break;
                 case "MPC-HC":
                     sh = new MPCHandler(path, preview);
                     Task mpc = sh.pollForSongChanges();

@@ -12,6 +12,7 @@ namespace OBS_Now_Playing
         private bool isItunesUp;
         private bool bStop;
         private TextBox preview;
+        private string oldName = null;
 
         public iTunesHandler(string p, TextBox preview)
         {
@@ -50,6 +51,7 @@ namespace OBS_Now_Playing
                 System.IO.StreamWriter writer = new System.IO.StreamWriter(path);
                 string songName;
                 string artist;
+                string fullName;
                 IITTrack ITrack;
 
                 if (!findItunes())
@@ -61,6 +63,34 @@ namespace OBS_Now_Playing
                 {
                     iTunesApp iTunes = new iTunesApp();
                     ITrack = iTunes.CurrentTrack;
+                    if (oldName != null)
+                    {
+                        if (ITrack != null)
+                        {
+                            songName = ITrack.Name;
+                            artist = ITrack.Artist;
+                            fullName = artist + " - " + songName;
+                            if (fullName != oldName)
+                            {
+                                writer.WriteLine(fullName);
+                                preview.Text = fullName;
+                                oldName = fullName;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // First run
+                        if (ITrack != null)
+                        {
+                            songName = ITrack.Name;
+                            artist = ITrack.Artist;
+                            fullName = artist + " - " + songName;
+                            writer.WriteLine(fullName);
+                            preview.Text = fullName;
+                            oldName = fullName;
+                        }
+                    }
                     if (ITrack != null)
                     {
                         songName = ITrack.Name;

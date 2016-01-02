@@ -125,6 +125,7 @@
             // 
             this.mediaPlayerBox.FormattingEnabled = true;
             this.mediaPlayerBox.Items.AddRange(new object[] {
+            "foobar2000",
             "iTunes",
             "MPC-HC",
             "Pandora",
@@ -187,6 +188,7 @@
             // 
             this.defaultMediaBox.FormattingEnabled = true;
             this.defaultMediaBox.Items.AddRange(new object[] {
+            "foobar2000",
             "iTunes",
             "MPC-HC",
             "Pandora",
