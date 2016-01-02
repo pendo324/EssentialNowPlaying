@@ -67,7 +67,7 @@ namespace OBS_Now_Playing
             while (!bStop)
             {
                 // get the foobar process (if it exists)
-                System.IO.StreamWriter writer = new System.IO.StreamWriter(path);
+                
 
                 try
                 {
@@ -77,13 +77,14 @@ namespace OBS_Now_Playing
                     //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
                     if (!isFoobarUp)
                     {
-                        writer.WriteLine("foobar2000 not open");
+                        writeToPath(path, "foobar2000 not open");
                         preview.Text = "foobar2000 not open";
                     }
                     else if (noSong)
                     {
-                        writer.WriteLine("Paused");
+                        writeToPath(path, "Paused");
                         preview.Text = "Paused";
+                        oldName = null;
                     }
                     else
                     {
@@ -95,7 +96,7 @@ namespace OBS_Now_Playing
                             if (oldName != songName)
                             {
                                 preview.Text = songName;
-                                writer.WriteLine(songName);
+                                writeToPath(path, songName);
                                 oldName = songName;
                             }
                         }
@@ -103,19 +104,19 @@ namespace OBS_Now_Playing
                         {
                             // first run
                             preview.Text = songName;
-                            writer.WriteLine(songName);
+                            writeToPath(path, songName);
                             oldName = songName;
                         }
                     }
 
-                    writer.Close();
+                    
 
                 }
                 catch (NullReferenceException)
                 {
-                    writer.WriteLine("foobar2000 not open");
+                    writeToPath(path, "foobar2000 not open");
                     preview.Text = "foobar2000 not open";
-                    writer.Close();
+                    
                 }
 
                 await Task.Delay(500);

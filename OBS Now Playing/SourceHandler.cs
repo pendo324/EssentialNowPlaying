@@ -15,5 +15,11 @@ namespace OBS_Now_Playing
         public abstract void stop();
 
         public abstract Task pollForSongChanges();
+
+        // wrapper for File.WriteAllText
+        public void writeToPath(string path, string text)
+        {
+            System.IO.File.WriteAllText(path, text);
+        }
     }
 }

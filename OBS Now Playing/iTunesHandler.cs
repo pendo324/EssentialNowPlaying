@@ -48,7 +48,7 @@ namespace OBS_Now_Playing
         {
             while (!bStop)
             {
-                System.IO.StreamWriter writer = new System.IO.StreamWriter(path);
+                
                 string songName;
                 string artist;
                 string fullName;
@@ -56,8 +56,9 @@ namespace OBS_Now_Playing
 
                 if (!findItunes())
                 {
-                    writer.WriteLine("iTunes not open");
+                    writeToPath(path, "iTunes not open");
                     preview.Text = "iTunes not open";
+                    oldName = null;
                 }
                 else
                 {
@@ -69,13 +70,19 @@ namespace OBS_Now_Playing
                         {
                             songName = ITrack.Name;
                             artist = ITrack.Artist;
-                            fullName = artist + " - " + songName;
+                            fullName = artist + " - " + songName + " ";
                             if (fullName != oldName)
                             {
-                                writer.WriteLine(fullName);
+                                writeToPath(path, fullName);
                                 preview.Text = fullName;
                                 oldName = fullName;
                             }
+                        }
+                        else
+                        {
+                            writeToPath(path, "Paused");
+                            preview.Text = "Paused";
+                            oldName = null;
                         }
                     }
                     else
@@ -85,27 +92,21 @@ namespace OBS_Now_Playing
                         {
                             songName = ITrack.Name;
                             artist = ITrack.Artist;
-                            fullName = artist + " - " + songName;
-                            writer.WriteLine(fullName);
+                            fullName = artist + " - " + songName + " ";
+                            writeToPath(path, fullName);
                             preview.Text = fullName;
                             oldName = fullName;
                         }
-                    }
-                    if (ITrack != null)
-                    {
-                        songName = ITrack.Name;
-                        artist = ITrack.Artist;
-                        writer.WriteLine(artist + " - " + songName);
-                        preview.Text = artist + " - " + songName;
-                    }
-                    else
-                    {
-                        writer.WriteLine("Paused");
-                        preview.Text = "Paused";
+                        else
+                        {
+                            writeToPath(path, "Paused");
+                            preview.Text = "Paused";
+                            oldName = null;
+                        }
                     }
                 }
 
-                writer.Close();
+                
 
                 await Task.Delay(500);
             }

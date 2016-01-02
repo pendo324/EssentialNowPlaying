@@ -66,23 +66,24 @@ namespace OBS_Now_Playing
             while (!bStop)
             {
                 // get the Spotify process (if it exists)
-                System.IO.StreamWriter writer = new System.IO.StreamWriter(path);
+                
 
                 try
                 {
                     Process s = findVLC();
 
-                    string songName = s.MainWindowTitle;
+                    string songName = s.MainWindowTitle + " ";
                     //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
                     if (!isVLCUp)
                     {
-                        writer.WriteLine("VLC not open");
+                        writeToPath(path, "VLC not open");
                         preview.Text = "VLC not open";
                     }
                     else if (noSong)
                     {
-                        writer.WriteLine("Paused");
+                        writeToPath(path, "Paused");
                         preview.Text = "Paused";
+                        oldName = null;
                     }
                     else
                     {
@@ -93,7 +94,7 @@ namespace OBS_Now_Playing
                             if (oldName != songName)
                             {
                                 preview.Text = songName;
-                                writer.WriteLine(songName);
+                                writeToPath(path, songName);
                                 oldName = songName;
                             }
                         }
@@ -101,19 +102,19 @@ namespace OBS_Now_Playing
                         {
                             // first run
                             preview.Text = songName;
-                            writer.WriteLine(songName);
+                            writeToPath(path, songName);
                             oldName = songName;
                         }
                     }
 
-                    writer.Close();
+                    
 
                 }
                 catch (NullReferenceException)
                 {
-                    writer.WriteLine("VLC not open");
+                    writeToPath(path, "VLC not open");
                     preview.Text = "VLC not open";
-                    writer.Close();
+                    
                 }
 
                 await Task.Delay(500);

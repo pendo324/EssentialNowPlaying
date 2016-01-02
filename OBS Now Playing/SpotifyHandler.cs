@@ -67,34 +67,35 @@ namespace OBS_Now_Playing
             while (!bStop)
             {
                 // get the Spotify process (if it exists)
-                System.IO.StreamWriter writer = new System.IO.StreamWriter(path);
 
                 try
                 {
                     Process s = findSpotify();
 
-                    string songName = s.MainWindowTitle;
+                    string songName = s.MainWindowTitle + " ";
                     //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
                     if (!isSpotifyUp)
                     {
-                        writer.WriteLine("Spotify not open");
+                        writeToPath(path, "Spotify not open");
+
                         preview.Text = "Spotify not open";
                     }
                     else if (noSong)
                     {
-                        writer.WriteLine("Paused");
+                        writeToPath(path, "Paused");
+
                         preview.Text = "Paused";
+                        oldName = null;
                     }
                     else
                     {
                         // only update the song if the song changes
-                        // strip some extra information from the string, like the theme and the program name
                         if (oldName != null)
                         {
-                            if (oldName != songName)
+                            if (string.Compare(oldName, songName) != 0)
                             {
                                 preview.Text = songName;
-                                writer.WriteLine(songName);
+                                writeToPath(path, songName);
                                 oldName = songName;
                             }
                         }
@@ -102,19 +103,15 @@ namespace OBS_Now_Playing
                         {
                             // first run
                             preview.Text = songName;
-                            writer.WriteLine(songName);
+                            writeToPath(path, songName);
                             oldName = songName;
                         }
                     }
-
-                    writer.Close();
-
                 }
                 catch (NullReferenceException)
                 {
-                    writer.WriteLine("Spotify not open");
+                    writeToPath(path, "Spotify not open");
                     preview.Text = "Spotify not open";
-                    writer.Close();
                 }
                 
                 await Task.Delay(500);
