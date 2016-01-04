@@ -1,0 +1,29 @@
+{
+    // pbhdjhhlfhdemcmfpoacfdmfknlakdod
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs2UzxdEtv9eKdwISmXbT9QY+aRHAfFgRP7TMSOHG3GyROWpm3YHR8wWnZvi4aGW0Rx40wPYdxl61vGC4EzsK1xbizqijorewDhkvM/GJF2JtdzdltL60IXKKcabezp2JpndqEOSGbERErjHBpEV/6Ydx5T2d2RtWZmJydwXBenbdkT5YgkZ3cnvYICrH2v7rzVP99+4QUwKI0zxODTlNf1FWgTjLYe2FWMbSU5cvJuASR2AqEd0Pd7BijBPdeMa5WKhO3Y2m0IdNLdn3vRAe8vhTrRCJqzqVMa++K1Qnj6uVAIm0332Fe6I3X+m4y+RlAZQrkUzaNA1lnGxn8QyRFwIDAQAB",
+
+    "manifest_version": 2,
+
+    "name": "Now Playing Companion",
+    "description": "Browser helper for the desktop application, OBS Now Playing",
+    "version": "1.0",
+
+    "icons": {
+        "48": "icon.png"
+    },
+
+    "permissions": [
+        "nativeMessaging",
+        "tabs", "<all_urls>"
+    ],
+
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    },
+
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    }
+}

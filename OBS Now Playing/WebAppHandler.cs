@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ServiceModel;
+using Newtonsoft.Json;
 
 namespace OBS_Now_Playing
 {
@@ -19,10 +21,16 @@ namespace OBS_Now_Playing
         private string webPlayer;
         private bool bStop;
         private bool isPluginOpen;
+        private bool paused;
         private TextBox preview;
-        HttpListener listener;
+        ITestContract channel;
 
         delegate void SetPreviewCallback(string text);
+
+        public void writeToPath(string path, string text)
+        {
+            System.IO.File.WriteAllText(path, text);
+        }
 
         public void SetPreview(string text)
         {
@@ -39,13 +47,17 @@ namespace OBS_Now_Playing
 
         public WebAppHandler(string p, TextBox preview, string webPlayer)
         {
+            string address = "net.pipe://localhost/flyinglawnmower/obsnp";
+
+            NetNamedPipeBinding binding = new NetNamedPipeBinding(NetNamedPipeSecurityMode.None);
+            EndpointAddress ep = new EndpointAddress(address);
+            channel = ChannelFactory<ITestContract>.CreateChannel(binding, ep);
+
             path = p;
             bStop = false;
             isPluginOpen = true;
             this.preview = preview;
             this.webPlayer = webPlayer;
-            listener = new HttpListener();
-            listener.Prefixes.Add("http://localhost:13337/");
         }
 
         public void start()
@@ -54,74 +66,42 @@ namespace OBS_Now_Playing
             pr.Start();
         }
 
-        private void ProcessRequest(HttpListenerContext context)
-        {
-            context.Response.AppendHeader("Access-Control-Allow-Origin", "*");
-            context.Response.AppendHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
-            StreamWriter writer = new System.IO.StreamWriter(path);
-
-            // Get the data from the HTTP stream
-            var body = new StreamReader(context.Request.InputStream).ReadToEnd();
-
-            Console.WriteLine("\n DEBUG: " + body);
-
-            if (body.Length > 0)
-            {
-                Dictionary<string, string> postParams = new Dictionary<string, string>();
-                string[] rawParams = body.Split('&');
-                foreach (string param in rawParams)
-                {
-                    string[] kvPair = param.Split('=');
-                    string key = kvPair[0];
-                    string value = System.Web.HttpUtility.UrlDecode(kvPair[1]);
-                    postParams.Add(key, value);
-                }
-
-                string wp = postParams["player"];
-                string songName = postParams["song"];
-
-                string[] songs;
-
-                songs = songName.Split(new string[] { (" - ") }, StringSplitOptions.None);
-
-                if (wp == webPlayer)
-                {
-                    writer.WriteLine(songName);
-                    SetPreview(songName);
-                }
-                else
-                {
-                    writer.WriteLine("{0} not open.", wp);
-                    SetPreview(string.Format("{0} not open.", wp));
-                }
-            }
-
-            context.Response.Close();
-            writer.Close();
-        }
-
         public void pollForSongChanges()
         {
-            try
+            while (true)
             {
-                listener.Start();
+                try
+                {
+                    SongInfo si = JsonConvert.DeserializeObject<SongInfo>(channel.getSongName());
+
+                    if (si.player == webPlayer)
+                    {
+                        writeToPath(this.path, si.song);
+                        SetPreview(si.song);
+                    }
+                    else
+                    {
+                        if (isPluginOpen)
+                        {
+                            writeToPath(this.path, string.Format("{0} not open.", webPlayer));
+                            SetPreview(string.Format("{0} not open.", webPlayer));
+                            isPluginOpen = false;
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    writeToPath(this.path, string.Format("{0} not open.", webPlayer));
+                    SetPreview(string.Format("{0} not open.", webPlayer));
+                }
+
+                Thread.Sleep(500);
             }
-            catch (HttpListenerException)
-            {
-                return;
-            }
-            while (listener.IsListening)
-            {
-                var context = listener.GetContext();
-                ProcessRequest(context);
-            }
-            listener.Close();
         }
 
         public void stop()
         {
-            listener.Close();
             pr.Abort();
         }
 
