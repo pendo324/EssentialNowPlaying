@@ -68,6 +68,7 @@ namespace OBS_Now_Playing
 
         public void pollForSongChanges()
         {
+            string oldSong = "";
             while (true)
             {
                 try
@@ -76,8 +77,12 @@ namespace OBS_Now_Playing
 
                     if (si.player == webPlayer)
                     {
-                        writeToPath(this.path, si.song);
-                        SetPreview(si.song);
+                        if (oldSong != si.song)
+                        {
+                            writeToPath(this.path, si.song);
+                            SetPreview(si.song);
+                            oldSong = si.song;
+                        }
                     }
                     else
                     {
