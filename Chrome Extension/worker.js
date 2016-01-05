@@ -111,8 +111,7 @@ function setSong() {
     var song = player();
     if (song.song != '') {
         $('.NowPlayingBody').text(song.song);
-        testing(song.webPlayer, song.song);
-        //postToIframe({ player: song.webPlayer, song: song.song });
+        sendToBackground(song.webPlayer, song.song);
     } else {
         $('.NowPlayingBody').text("No song playing");
     }
@@ -169,11 +168,12 @@ function addHTML() {
     $('body').append(html);
 }
 
-function testing(player, song) {
+function sendToBackground(player, song) {
     var data = {
         'player': player,
         'song': song
     };
+
     chrome.runtime.sendMessage(data);
 }
 

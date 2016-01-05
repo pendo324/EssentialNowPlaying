@@ -72,6 +72,11 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.4\build\dotnet\Fody.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>taskkill taskkill /F /IM NativeMessagingInterface.exe &gt;nul 2&gt;&amp;1
+copy /b "$(ProjectDir)$(OutDir)NativeMessagingInterface.exe" "$(SolutionDir)Release\NativeMessagingInterface.exe"
+7za a -tzip $(SolutionDir)Release.zip $(SolutionDir)Release\</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

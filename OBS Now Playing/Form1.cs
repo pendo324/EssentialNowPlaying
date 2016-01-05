@@ -18,6 +18,7 @@ namespace OBS_Now_Playing
             this.mediaPlayerBox.DropDownStyle = ComboBoxStyle.DropDownList;
             this.defaultMediaBox.DropDownStyle = ComboBoxStyle.DropDownList;
             SaveManager.loadSettings(settingFileLocation, defaultMediaBox, mediaPlayerBox, saveLocation, defaultSaveLocation);
+            Initializer.init();
         }
 
         private void selectLocation_Click(object sender, EventArgs e)
@@ -88,6 +89,11 @@ namespace OBS_Now_Playing
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             SaveManager.saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
