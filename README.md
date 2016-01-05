@@ -20,7 +20,9 @@ Planned players to support:
 * Nothing at the moment, just stability fixes
 
 ### Usage
-To use the WebApps, you'll need to run the included ```.bat``` file, which edits your regitry to allows the Chrome Extension to communicate with the ```NativeMessagingInterface.exe``` included in the release. An important thing to note: if you ever need to change the location of ```NativeMessagingInterface.exe```, you need to move the .bat and the ```manifest.json``` file to the same folder as ```NativeMessagingInterface.exe``` and run the ```.bat``` file again.
+To use the WebApps, you'll need install the companion extension from the webstore. Here's a link to it: https://chrome.google.com/webstore/detail/now-playing-companion/aocghdlnkcebaipehcejjpeiijpdjldo.
+
+Then, on any supported site, press that new icon in the top right of your browser then press the button inside that, and then on the bottom right of the page, there will be a new text box, press "Start" to link it up with the desktop application and you're done!
 
 ### Compiling
 To compile using Visual Studio on Windows you are going to need to get a few References
