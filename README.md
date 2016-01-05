@@ -20,13 +20,9 @@ Planned players to support:
 * Nothing at the moment, just stability fixes
 
 ### Usage
-To use the WebApps, you'll need to bookmark the nowplaying.js script that's also on this repo. This is what your bookmark should end up looking like:
-```
-javascript:(function(){document.body.appendChild(document.createElement("script")).src="//cdn.rawgit.com/pendo324/OBS-Now-Playing/7832b96455d1ed5fe7b60e004b74c011d9db5cda/OBS%20Now%20Playing/nowplaying.min.js"})()
-```
-Once you load the .js script you will notice a shield in the address bar (on Chrome at least). Just click it and allow the loading of unsafe scripts.
+To use the WebApps, you'll need install the companion extension from the webstore. Here's a link to it: https://chrome.google.com/webstore/detail/now-playing-companion/aocghdlnkcebaipehcejjpeiijpdjldo.
 
-Unfortunately, due to the nature of how SSL binding works with .NET, I was unable to get an SSL certificate for this application, meaning this will send data using HTTP, not HTTPS. All the script does is sends data to a localhost server, so I would deem it safe. In the future I may add HTTPS support, it would be trivial on the javascript side tbh.
+Then, on any supported site, press that new icon in the top right of your browser then press the button inside that, and then on the bottom right of the page, there will be a new text box, press "Start" to link it up with the desktop application and you're done!
 
 ### Compiling
 To compile using Visual Studio on Windows you are going to need to get a few References
