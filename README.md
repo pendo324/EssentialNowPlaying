@@ -26,7 +26,7 @@ To use the WebApps, you'll need install the companion extension from the webstor
 
 Then, on any supported site, press that new icon in the top right of your browser then press the button inside that, and then on the bottom right of the page, there will be a new text box, press "Start" to link it up with the desktop application and you're done!
 
-## Note: WebApps will not function if ```NativeMessagingInterface.exe``` is not in the same directory as ```OBS Now Playing.exe```.
+#### Note: WebApps will not function if ```NativeMessagingInterface.exe``` is not in the same directory as ```OBS Now Playing.exe```.
 Please ensure that they are in the same directory before creating an issue.
 
 ### Compiling
