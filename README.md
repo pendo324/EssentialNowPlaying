@@ -10,6 +10,7 @@ Currently supported:
     * winamp
     * VLC
     * MPC-HC
+    * foobar2000
   - WebApps:
     * Spotify web player (play.spotify.com)
     * YouTube
