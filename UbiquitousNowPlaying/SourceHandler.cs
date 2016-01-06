@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace OBS_Now_Playing
+namespace Ubiquitous_Now_Playing
 {
     abstract class SourceHandler
     {

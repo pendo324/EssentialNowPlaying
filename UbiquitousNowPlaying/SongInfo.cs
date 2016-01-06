@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OBS_Now_Playing
+namespace Ubiquitous_Now_Playing
 {
     public class SongInfo
     {

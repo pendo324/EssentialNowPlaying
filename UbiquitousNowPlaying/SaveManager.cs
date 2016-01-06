@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OBS_Now_Playing
+namespace Ubiquitous_Now_Playing
 {
     class SaveManager
     {

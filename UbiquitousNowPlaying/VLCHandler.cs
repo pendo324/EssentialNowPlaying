@@ -1,36 +1,35 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OBS_Now_Playing
+namespace Ubiquitous_Now_Playing
 {
-    class FoobarHandler : SourceHandler
+    class VLCHandler : SourceHandler
     {
         private Process[] processlist;
         private string path;
         private bool noSong;
+        private bool isVLCUp;
         private bool bStop;
-        private bool isFoobarUp;
         private TextBox preview;
         private string oldName = null;
 
-        public FoobarHandler(string p, TextBox preview)
+        public VLCHandler(string p, TextBox preview)
         {
             path = p;
             bStop = false;
-            isFoobarUp = true;
             this.preview = preview;
         }
 
-        private Process findFoobar()
+        private Process findVLC()
         {
-            Process foobar2000 = null;
-            processlist = Process.GetProcessesByName("foobar2000");
+            Process spotify = null;
+            processlist = Process.GetProcessesByName("VLC media player");
 
             if (processlist.Length == 0)
             {
-                isFoobarUp = false;
+                isVLCUp = false;
                 Debug.WriteLine("\n\n\n\nDEBUG\n\n\n");
                 return null;
             }
@@ -38,15 +37,15 @@ namespace OBS_Now_Playing
             {
                 foreach (Process process in processlist)
                 {
-                    if (process.ProcessName == "foobar2000")
+                    if (process.ProcessName == "VLC media player")
                     {
                         if (process.MainWindowTitle != "")
                         {
-                            foobar2000 = process;
+                            spotify = process;
                             //Debug.WriteLine("{0} + {1}", "DEBUG", spotify.MainWindowTitle);
                             noSong = false;
-                            isFoobarUp = true;
-                            if (process.MainWindowTitle == "foobar2000")
+                            isVLCUp = true;
+                            if (process.MainWindowTitle == "VLC media player")
                             {
                                 noSong = true;
                             }
@@ -54,31 +53,31 @@ namespace OBS_Now_Playing
                     }
                     else
                     {
-                        isFoobarUp = false;
+                        isVLCUp = false;
                     }
                 }
             }
 
-            return foobar2000;
+            return spotify;
         }
 
         async public override Task pollForSongChanges()
         {
             while (!bStop)
             {
-                // get the foobar process (if it exists)
+                // get the Spotify process (if it exists)
                 
 
                 try
                 {
-                    Process s = findFoobar();
+                    Process s = findVLC();
 
-                    string songName = s.MainWindowTitle;
+                    string songName = s.MainWindowTitle + " ";
                     //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
-                    if (!isFoobarUp)
+                    if (!isVLCUp)
                     {
-                        writeToPath(path, "foobar2000 not open");
-                        preview.Text = "foobar2000 not open";
+                        writeToPath(path, "VLC not open");
+                        preview.Text = "VLC not open";
                     }
                     else if (noSong)
                     {
@@ -90,7 +89,6 @@ namespace OBS_Now_Playing
                     {
                         // only update the song if the song changes
                         // strip some extra information from the string, like the theme and the program name
-                        songName = songName.Substring(0, songName.IndexOf("▪"));
                         if (oldName != null)
                         {
                             if (oldName != songName)
@@ -114,8 +112,8 @@ namespace OBS_Now_Playing
                 }
                 catch (NullReferenceException)
                 {
-                    writeToPath(path, "foobar2000 not open");
-                    preview.Text = "foobar2000 not open";
+                    writeToPath(path, "VLC not open");
+                    preview.Text = "VLC not open";
                     
                 }
 

@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OBS_Now_Playing
+namespace Ubiquitous_Now_Playing
 {
-    class VLCHandler : SourceHandler
+    class MPCHandler : SourceHandler
     {
         private Process[] processlist;
         private string path;
@@ -15,17 +15,17 @@ namespace OBS_Now_Playing
         private TextBox preview;
         private string oldName = null;
 
-        public VLCHandler(string p, TextBox preview)
+        public MPCHandler(string p, TextBox preview)
         {
             path = p;
             bStop = false;
             this.preview = preview;
         }
 
-        private Process findVLC()
+        private Process findMPC()
         {
             Process spotify = null;
-            processlist = Process.GetProcessesByName("VLC media player");
+            processlist = Process.GetProcessesByName("MPC-HC");
 
             if (processlist.Length == 0)
             {
@@ -37,7 +37,7 @@ namespace OBS_Now_Playing
             {
                 foreach (Process process in processlist)
                 {
-                    if (process.ProcessName == "VLC media player")
+                    if (process.ProcessName == "MPC-HC")
                     {
                         if (process.MainWindowTitle != "")
                         {
@@ -45,7 +45,7 @@ namespace OBS_Now_Playing
                             //Debug.WriteLine("{0} + {1}", "DEBUG", spotify.MainWindowTitle);
                             noSong = false;
                             isVLCUp = true;
-                            if (process.MainWindowTitle == "VLC media player")
+                            if (process.MainWindowTitle == "MPC-HC")
                             {
                                 noSong = true;
                             }
@@ -70,14 +70,14 @@ namespace OBS_Now_Playing
 
                 try
                 {
-                    Process s = findVLC();
+                    Process s = findMPC();
 
                     string songName = s.MainWindowTitle + " ";
                     //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
                     if (!isVLCUp)
                     {
-                        writeToPath(path, "VLC not open");
-                        preview.Text = "VLC not open";
+                        writeToPath(path, "MPC-HC not open");
+                        preview.Text = "MPC-HC not open";
                     }
                     else if (noSong)
                     {
@@ -107,13 +107,14 @@ namespace OBS_Now_Playing
                         }
                     }
 
+
                     
 
                 }
                 catch (NullReferenceException)
                 {
-                    writeToPath(path, "VLC not open");
-                    preview.Text = "VLC not open";
+                    writeToPath(path, "MPC-HC not open");
+                    preview.Text = "MPC-HC not open";
                     
                 }
 

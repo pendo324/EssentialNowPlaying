@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Windows.Forms;
 
-namespace OBS_Now_Playing
+namespace Ubiquitous_Now_Playing
 {
     public partial class Form1 : Form
     {

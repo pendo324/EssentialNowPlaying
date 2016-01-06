@@ -1,4 +1,4 @@
-﻿namespace OBS_Now_Playing
+﻿namespace Ubiquitous_Now_Playing
 {
     partial class Form1
     {
@@ -226,7 +226,7 @@
             this.MaximumSize = new System.Drawing.Size(356, 286);
             this.MinimumSize = new System.Drawing.Size(356, 286);
             this.Name = "Form1";
-            this.Text = "Music Overlay";
+            this.Text = "Ubiquitous Now Playing";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);

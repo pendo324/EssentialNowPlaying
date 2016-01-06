@@ -3,7 +3,7 @@ using iTunesLib;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-namespace OBS_Now_Playing
+namespace Ubiquitous_Now_Playing
 {
     class iTunesHandler : SourceHandler
     {

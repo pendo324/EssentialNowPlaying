@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.ServiceModel;
 using Newtonsoft.Json;
 
-namespace OBS_Now_Playing
+namespace Ubiquitous_Now_Playing
 {
     // Event driven Handler for things that use the nowplaying.js script
     class WebAppHandler

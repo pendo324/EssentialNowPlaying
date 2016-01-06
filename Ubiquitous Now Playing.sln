@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OBS Now Playing", "OBS Now Playing\OBS Now Playing.csproj", "{23D917CC-86F2-415C-98E6-1C2AB78E3284}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ubiquitous Now Playing", "UbiquitousNowPlaying\Ubiquitous Now Playing.csproj", "{23D917CC-86F2-415C-98E6-1C2AB78E3284}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D60E9167-DE5C-4BD9-9541-FA13EB50DC68} = {D60E9167-DE5C-4BD9-9541-FA13EB50DC68}
 	EndProjectSection

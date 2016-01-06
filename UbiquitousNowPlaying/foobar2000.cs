@@ -3,34 +3,34 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace OBS_Now_Playing
+namespace Ubiquitous_Now_Playing
 {
-    class SpotifyHandler : SourceHandler
+    class FoobarHandler : SourceHandler
     {
         private Process[] processlist;
         private string path;
         private bool noSong;
         private bool bStop;
-        private bool isSpotifyUp;
+        private bool isFoobarUp;
         private TextBox preview;
         private string oldName = null;
 
-        public SpotifyHandler(string p, TextBox preview)
+        public FoobarHandler(string p, TextBox preview)
         {
             path = p;
             bStop = false;
-            isSpotifyUp = true;
+            isFoobarUp = true;
             this.preview = preview;
         }
 
-        private Process findSpotify()
+        private Process findFoobar()
         {
-            Process spotify = null;
-            processlist = Process.GetProcessesByName("Spotify");
+            Process foobar2000 = null;
+            processlist = Process.GetProcessesByName("foobar2000");
 
             if (processlist.Length == 0)
             {
-                isSpotifyUp = false;
+                isFoobarUp = false;
                 Debug.WriteLine("\n\n\n\nDEBUG\n\n\n");
                 return null;
             }
@@ -38,15 +38,15 @@ namespace OBS_Now_Playing
             {
                 foreach (Process process in processlist)
                 {
-                    if (process.ProcessName == "Spotify")
+                    if (process.ProcessName == "foobar2000")
                     {
                         if (process.MainWindowTitle != "")
                         {
-                            spotify = process;
+                            foobar2000 = process;
                             //Debug.WriteLine("{0} + {1}", "DEBUG", spotify.MainWindowTitle);
                             noSong = false;
-                            isSpotifyUp = true;
-                            if (process.MainWindowTitle == "Spotify")
+                            isFoobarUp = true;
+                            if (process.MainWindowTitle == "foobar2000")
                             {
                                 noSong = true;
                             }
@@ -54,45 +54,46 @@ namespace OBS_Now_Playing
                     }
                     else
                     {
-                        isSpotifyUp = false;
+                        isFoobarUp = false;
                     }
                 }
             }
 
-            return spotify;
+            return foobar2000;
         }
 
         async public override Task pollForSongChanges()
         {
             while (!bStop)
             {
-                // get the Spotify process (if it exists)
+                // get the foobar process (if it exists)
+                
 
                 try
                 {
-                    Process s = findSpotify();
+                    Process s = findFoobar();
 
-                    string songName = s.MainWindowTitle + " ";
+                    string songName = s.MainWindowTitle;
                     //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
-                    if (!isSpotifyUp)
+                    if (!isFoobarUp)
                     {
-                        writeToPath(path, "Spotify not open");
-
-                        preview.Text = "Spotify not open";
+                        writeToPath(path, "foobar2000 not open");
+                        preview.Text = "foobar2000 not open";
                     }
                     else if (noSong)
                     {
                         writeToPath(path, "Paused");
-
                         preview.Text = "Paused";
                         oldName = null;
                     }
                     else
                     {
                         // only update the song if the song changes
+                        // strip some extra information from the string, like the theme and the program name
+                        songName = songName.Substring(0, songName.IndexOf("▪"));
                         if (oldName != null)
                         {
-                            if (string.Compare(oldName, songName) != 0)
+                            if (oldName != songName)
                             {
                                 preview.Text = songName;
                                 writeToPath(path, songName);
@@ -107,13 +108,17 @@ namespace OBS_Now_Playing
                             oldName = songName;
                         }
                     }
+
+                    
+
                 }
                 catch (NullReferenceException)
                 {
-                    writeToPath(path, "Spotify not open");
-                    preview.Text = "Spotify not open";
+                    writeToPath(path, "foobar2000 not open");
+                    preview.Text = "foobar2000 not open";
+                    
                 }
-                
+
                 await Task.Delay(500);
             }
         }
