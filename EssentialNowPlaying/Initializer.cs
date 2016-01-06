@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ubiquitous_Now_Playing
+namespace Essential_Now_Playing
 {
     class Initializer
     {

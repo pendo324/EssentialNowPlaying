@@ -1,4 +1,4 @@
-﻿namespace Ubiquitous_Now_Playing
+﻿namespace Essential_Now_Playing
 {
     partial class Form1
     {

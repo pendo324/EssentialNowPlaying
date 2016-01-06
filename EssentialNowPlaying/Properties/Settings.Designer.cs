@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Ubiquitous_Now_Playing.Properties {
+namespace Essential_Now_Playing.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

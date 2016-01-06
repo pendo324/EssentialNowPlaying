@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Ubiquitous_Now_Playing
+namespace Essential_Now_Playing
 {
     abstract class SourceHandler
     {

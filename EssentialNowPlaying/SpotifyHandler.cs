@@ -1,35 +1,36 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Ubiquitous_Now_Playing
+namespace Essential_Now_Playing
 {
-    class MPCHandler : SourceHandler
+    class SpotifyHandler : SourceHandler
     {
         private Process[] processlist;
         private string path;
         private bool noSong;
-        private bool isVLCUp;
         private bool bStop;
+        private bool isSpotifyUp;
         private TextBox preview;
         private string oldName = null;
 
-        public MPCHandler(string p, TextBox preview)
+        public SpotifyHandler(string p, TextBox preview)
         {
             path = p;
             bStop = false;
+            isSpotifyUp = true;
             this.preview = preview;
         }
 
-        private Process findMPC()
+        private Process findSpotify()
         {
             Process spotify = null;
-            processlist = Process.GetProcessesByName("MPC-HC");
+            processlist = Process.GetProcessesByName("Spotify");
 
             if (processlist.Length == 0)
             {
-                isVLCUp = false;
+                isSpotifyUp = false;
                 Debug.WriteLine("\n\n\n\nDEBUG\n\n\n");
                 return null;
             }
@@ -37,15 +38,15 @@ namespace Ubiquitous_Now_Playing
             {
                 foreach (Process process in processlist)
                 {
-                    if (process.ProcessName == "MPC-HC")
+                    if (process.ProcessName == "Spotify")
                     {
                         if (process.MainWindowTitle != "")
                         {
                             spotify = process;
                             //Debug.WriteLine("{0} + {1}", "DEBUG", spotify.MainWindowTitle);
                             noSong = false;
-                            isVLCUp = true;
-                            if (process.MainWindowTitle == "MPC-HC")
+                            isSpotifyUp = true;
+                            if (process.MainWindowTitle == "Spotify")
                             {
                                 noSong = true;
                             }
@@ -53,7 +54,7 @@ namespace Ubiquitous_Now_Playing
                     }
                     else
                     {
-                        isVLCUp = false;
+                        isSpotifyUp = false;
                     }
                 }
             }
@@ -66,32 +67,32 @@ namespace Ubiquitous_Now_Playing
             while (!bStop)
             {
                 // get the Spotify process (if it exists)
-                
 
                 try
                 {
-                    Process s = findMPC();
+                    Process s = findSpotify();
 
                     string songName = s.MainWindowTitle + " ";
                     //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
-                    if (!isVLCUp)
+                    if (!isSpotifyUp)
                     {
-                        writeToPath(path, "MPC-HC not open");
-                        preview.Text = "MPC-HC not open";
+                        writeToPath(path, "Spotify not open");
+
+                        preview.Text = "Spotify not open";
                     }
                     else if (noSong)
                     {
                         writeToPath(path, "Paused");
+
                         preview.Text = "Paused";
                         oldName = null;
                     }
                     else
                     {
                         // only update the song if the song changes
-                        // strip some extra information from the string, like the theme and the program name
                         if (oldName != null)
                         {
-                            if (oldName != songName)
+                            if (string.Compare(oldName, songName) != 0)
                             {
                                 preview.Text = songName;
                                 writeToPath(path, songName);
@@ -106,18 +107,13 @@ namespace Ubiquitous_Now_Playing
                             oldName = songName;
                         }
                     }
-
-
-                    
-
                 }
                 catch (NullReferenceException)
                 {
-                    writeToPath(path, "MPC-HC not open");
-                    preview.Text = "MPC-HC not open";
-                    
+                    writeToPath(path, "Spotify not open");
+                    preview.Text = "Spotify not open";
                 }
-
+                
                 await Task.Delay(500);
             }
         }

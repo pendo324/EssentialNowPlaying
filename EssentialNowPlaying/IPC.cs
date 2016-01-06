@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 
-namespace Ubiquitous_Now_Playing
+namespace Essential_Now_Playing
 {
     [ServiceContract(Namespace = "OBS Now Playing")]
     interface ITestContract

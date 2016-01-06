@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Ubiquitous_Now_Playing
+namespace Essential_Now_Playing
 {
-    class WinAmpHandler : SourceHandler
+    class MPCHandler : SourceHandler
     {
         private Process[] processlist;
         private string path;
@@ -13,18 +13,19 @@ namespace Ubiquitous_Now_Playing
         private bool isVLCUp;
         private bool bStop;
         private TextBox preview;
+        private string oldName = null;
 
-        public WinAmpHandler(string p, TextBox preview)
+        public MPCHandler(string p, TextBox preview)
         {
             path = p;
             bStop = false;
             this.preview = preview;
         }
 
-        private Process findWinAmp()
+        private Process findMPC()
         {
             Process spotify = null;
-            processlist = Process.GetProcessesByName("winamp");
+            processlist = Process.GetProcessesByName("MPC-HC");
 
             if (processlist.Length == 0)
             {
@@ -36,7 +37,7 @@ namespace Ubiquitous_Now_Playing
             {
                 foreach (Process process in processlist)
                 {
-                    if (process.ProcessName == "winamp")
+                    if (process.ProcessName == "MPC-HC")
                     {
                         if (process.MainWindowTitle != "")
                         {
@@ -44,7 +45,7 @@ namespace Ubiquitous_Now_Playing
                             //Debug.WriteLine("{0} + {1}", "DEBUG", spotify.MainWindowTitle);
                             noSong = false;
                             isVLCUp = true;
-                            if (process.MainWindowTitle == "winamp")
+                            if (process.MainWindowTitle == "MPC-HC")
                             {
                                 noSong = true;
                             }
@@ -65,38 +66,56 @@ namespace Ubiquitous_Now_Playing
             while (!bStop)
             {
                 // get the Spotify process (if it exists)
-                System.IO.StreamWriter writer = new System.IO.StreamWriter(path);
+                
 
                 try
                 {
-                    Process s = findWinAmp();
+                    Process s = findMPC();
 
-                    string songName = s.MainWindowTitle;
+                    string songName = s.MainWindowTitle + " ";
                     //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
                     if (!isVLCUp)
                     {
-                        writer.WriteLine("winamp not open");
-                        preview.Text = "winamp not open";
+                        writeToPath(path, "MPC-HC not open");
+                        preview.Text = "MPC-HC not open";
                     }
                     else if (noSong)
                     {
-                        writer.WriteLine("Paused");
+                        writeToPath(path, "Paused");
                         preview.Text = "Paused";
+                        oldName = null;
                     }
                     else
                     {
-                        preview.Text = songName;
-                        writer.WriteLine(songName);
+                        // only update the song if the song changes
+                        // strip some extra information from the string, like the theme and the program name
+                        if (oldName != null)
+                        {
+                            if (oldName != songName)
+                            {
+                                preview.Text = songName;
+                                writeToPath(path, songName);
+                                oldName = songName;
+                            }
+                        }
+                        else
+                        {
+                            // first run
+                            preview.Text = songName;
+                            writeToPath(path, songName);
+                            oldName = songName;
+                        }
                     }
 
-                    writer.Close();
+
+                    
 
                 }
                 catch (NullReferenceException)
                 {
-                    writer.WriteLine("winamp not open");
-                    preview.Text = "winamp not open";
-                    writer.Close();
+                    writeToPath(path, "MPC-HC not open");
+                    preview.Text = "MPC-HC not open";
+                    
                 }
 
                 await Task.Delay(500);

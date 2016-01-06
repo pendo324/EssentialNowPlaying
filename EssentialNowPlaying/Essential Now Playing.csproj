@@ -7,8 +7,8 @@
     <ProjectGuid>{23D917CC-86F2-415C-98E6-1C2AB78E3284}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ubiquitous_Now_Playing</RootNamespace>
-    <AssemblyName>Ubiquitous Now Playing</AssemblyName>
+    <RootNamespace>Essential_Now_Playing</RootNamespace>
+    <AssemblyName>Essential Now Playing</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -194,7 +194,7 @@
     <Error Condition="!Exists('..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.4\build\dotnet\Fody.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>copy /b "$(ProjectDir)$(OutDir)OBS Now Playing.exe" "$(SolutionDir)Release\OBS Now Playing.exe"</PostBuildEvent>
+    <PostBuildEvent>copy /b "$(ProjectDir)$(OutDir)Ubiquitous Now Playing.exe" "$(SolutionDir)Release\Ubiquitous Now Playing.exe"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -3,7 +3,7 @@ using iTunesLib;
 using System.Windows.Forms;
 using System.Diagnostics;
 
-namespace Ubiquitous_Now_Playing
+namespace Essential_Now_Playing
 {
     class iTunesHandler : SourceHandler
     {

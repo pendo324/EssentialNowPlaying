@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Ubiquitous_Now_Playing
+namespace Essential_Now_Playing
 {
     class SourceManager
     {
