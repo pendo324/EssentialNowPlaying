@@ -13,6 +13,7 @@ Currently supported:
     * foobar2000
   - WebApps:
     * Spotify web player (play.spotify.com)
+    * Soundcloud
     * YouTube
     * Pandora
     * Google Play (play.google.com)
