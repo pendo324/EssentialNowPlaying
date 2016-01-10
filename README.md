@@ -12,8 +12,10 @@ Currently supported:
     * MPC-HC
     * foobar2000
   - WebApps:
+    * Mixcloud
     * Spotify web player (play.spotify.com)
     * Soundcloud
+    * Tunein
     * YouTube
     * Pandora
     * Google Play (play.google.com)
