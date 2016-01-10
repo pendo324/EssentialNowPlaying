@@ -194,7 +194,13 @@
     <Error Condition="!Exists('..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.4\build\dotnet\Fody.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>copy /b "$(ProjectDir)$(OutDir)Ubiquitous Now Playing.exe" "$(SolutionDir)Release\Ubiquitous Now Playing.exe"</PostBuildEvent>
+    <PostBuildEvent>copy /b "$(ProjectDir)$(OutDir)Essential Now Playing.exe" "$(SolutionDir)Release\Essential Now Playing.exe"
+7za a -tzip $(SolutionDir)Release.zip $(SolutionDir)Release\
+7za a -tzip "$(SolutionDir)Chrome Extension.zip" "$(SolutionDir)Chrome Extension\"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

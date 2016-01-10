@@ -67,6 +67,16 @@ namespace Essential_Now_Playing
                     wah = new WebAppHandler(path, preview, "Spotify");
                     wah.start();
                     break;
+                case "Mixcloud":
+                    isWebPlayer = true;
+                    wah = new WebAppHandler(path, preview, "Mixcloud");
+                    wah.start();
+                    break;
+                case "tunein":
+                    isWebPlayer = true;
+                    wah = new WebAppHandler(path, preview, "tunein");
+                    wah.start();
+                    break;
                 default:
                     break;
             }

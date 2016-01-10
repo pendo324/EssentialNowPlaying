@@ -128,11 +128,13 @@
             this.mediaPlayerBox.Items.AddRange(new object[] {
             "foobar2000",
             "iTunes",
+            "Mixcloud",
             "MPC-HC",
             "Pandora",
             "Soundcloud",
             "Spotify",
             "Spotify (web)",
+            "tunein",
             "VLC",
             "WinAmp",
             "YouTube"});
@@ -191,11 +193,13 @@
             this.defaultMediaBox.Items.AddRange(new object[] {
             "foobar2000",
             "iTunes",
+            "Mixcloud",
             "MPC-HC",
             "Pandora",
             "Soundcloud",
             "Spotify",
             "Spotify (web)",
+            "tunein",
             "VLC",
             "WinAmp",
             "YouTube"});
@@ -226,7 +230,7 @@
             this.MaximumSize = new System.Drawing.Size(356, 286);
             this.MinimumSize = new System.Drawing.Size(356, 286);
             this.Name = "Form1";
-            this.Text = "Ubiquitous Now Playing";
+            this.Text = "Essential Now Playing";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);

@@ -10,12 +10,32 @@ var $ = window.jQuery;
 supported = false;
 
 players = {
+    "mixcloud": mixcloud,
     "pandora": pandora,
     "play.google.com": play,
     "play.spotify.com": spotify,
     "soundcloud": soundcloud,
+    "tunein": tunein,
     "youtube": youtube
 };
+
+function mixcloud() {
+    var artist, song, songTitle;
+    var wp = "Mixcloud";
+
+    if ($(document).find('a[ng-bind="player.currentCloudcast.title"]').text() === undefined || $(document).find('a[ng-bind="player.currentCloudcast.title"]').text() === null) {
+        songTitle = 'Paused';
+    } else {
+        artist = $(document).find('a[ng-bind="player.currentCloudcast.owner"]').text();
+        song = $(document).find('a[ng-bind="player.currentCloudcast.title"]').text();
+        songTitle = artist + ' - ' + song;
+    }
+
+    return {
+        song: songTitle,
+        webPlayer: wp
+    };
+}
 
 function pandora() {
     var artist, song, songTitle;
@@ -79,6 +99,22 @@ function soundcloud() {
         songTitle = 'Paused';
     } else {
         songTitle = $(document).find('.playbackSoundBadge__title').attr('title');
+    }
+
+    return {
+        song: songTitle,
+        webPlayer: wp
+    };
+}
+
+// Can't grab artist from tunein, it is placed together
+function tunein() {
+    var songTitle;
+    var wp = "tunein";
+    if ($(document).find('#tuner > div > div > div.display > div.line1._navigateNowPlaying').text() === undefined || $(document).find('#tuner > div > div > div.display > div.line1._navigateNowPlaying').text() === null) {
+        songTitle = 'Paused';
+    } else {
+        songTitle = $(document).find('#tuner > div > div > div.display > div.line1._navigateNowPlaying').text();
     }
 
     return {
