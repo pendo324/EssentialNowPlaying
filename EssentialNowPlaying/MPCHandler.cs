@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,56 +25,58 @@ namespace Essential_Now_Playing
 
         private Process findMPC()
         {
-            Process spotify = null;
-            processlist = Process.GetProcessesByName("MPC-HC");
+            Process MPCHCProc = null;
+            processlist = Process.GetProcessesByName("mpc-hc");
 
             if (processlist.Length == 0)
             {
-                isVLCUp = false;
-                Debug.WriteLine("\n\n\n\nDEBUG\n\n\n");
-                return null;
-            }
-            else
-            {
-                foreach (Process process in processlist)
+                processlist = Process.GetProcessesByName("mpc-hc64");
+                if (processlist.Length == 0)
                 {
-                    if (process.ProcessName == "MPC-HC")
-                    {
-                        if (process.MainWindowTitle != "")
-                        {
-                            spotify = process;
-                            //Debug.WriteLine("{0} + {1}", "DEBUG", spotify.MainWindowTitle);
-                            noSong = false;
-                            isVLCUp = true;
-                            if (process.MainWindowTitle == "MPC-HC")
-                            {
-                                noSong = true;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        isVLCUp = false;
-                    }
+                    isVLCUp = false;
+                    return null;
+                }
+            }
+            foreach (Process process in processlist)
+            {
+                if (process.ProcessName == "mpc-hc64" || process.ProcessName == "mpc-hc")
+                {
+                    MPCHCProc = process;
+                    isVLCUp = true;
+                }
+                else
+                {
+                    isVLCUp = false;
                 }
             }
 
-            return spotify;
+            return MPCHCProc;
         }
 
         async public override Task pollForSongChanges()
         {
+            Process s = findMPC();
             while (!bStop)
             {
-                // get the Spotify process (if it exists)
-                
+                s.Refresh();
+                if (s.HasExited)
+                {
+                    bStop = true;
+                    break;
+                }
 
+                if (s.MainWindowTitle == "Media Player Classic Home Cinema")
+                {
+                    noSong = true;
+                }
+                else
+                {
+                    noSong = false;
+                }
                 try
                 {
-                    Process s = findMPC();
 
-                    string songName = s.MainWindowTitle + " ";
-                    //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
+                    string songName = Path.GetFileNameWithoutExtension(s.MainWindowTitle) + " ";
                     if (!isVLCUp)
                     {
                         writeToPath(path, "MPC-HC not open");
@@ -106,19 +109,15 @@ namespace Essential_Now_Playing
                             oldName = songName;
                         }
                     }
-
-
-                    
-
                 }
                 catch (NullReferenceException)
                 {
                     writeToPath(path, "MPC-HC not open");
                     preview.Text = "MPC-HC not open";
-                    
+
                 }
 
-                await Task.Delay(500);
+                await Task.Delay(1000);
             }
         }
 
