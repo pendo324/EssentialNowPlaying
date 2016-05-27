@@ -38,11 +38,14 @@
             this.selectLocation = new System.Windows.Forms.Button();
             this.mediaPlayerBox = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.suffixText = new System.Windows.Forms.TextBox();
             this.settingsLocation = new System.Windows.Forms.Button();
             this.defaultSaveLocation = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.defaultMediaBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -147,6 +150,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.suffixText);
             this.tabPage2.Controls.Add(this.settingsLocation);
             this.tabPage2.Controls.Add(this.defaultSaveLocation);
             this.tabPage2.Controls.Add(this.label1);
@@ -159,6 +165,22 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 125);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Custom Text Suffix";
+            // 
+            // suffixText
+            // 
+            this.suffixText.Location = new System.Drawing.Point(9, 144);
+            this.suffixText.Name = "suffixText";
+            this.suffixText.Size = new System.Drawing.Size(315, 20);
+            this.suffixText.TabIndex = 6;
             // 
             // settingsLocation
             // 
@@ -218,6 +240,16 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Default Media Player:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(267, 184);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(57, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -258,6 +290,9 @@
         private System.Windows.Forms.Button settingsLocation;
         private System.Windows.Forms.TextBox previewBox;
         private System.Windows.Forms.Label previewLabel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox suffixText;
+        private System.Windows.Forms.Button button1;
     }
 }
 

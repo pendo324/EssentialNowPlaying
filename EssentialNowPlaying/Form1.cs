@@ -17,7 +17,7 @@ namespace Essential_Now_Playing
             InitializeComponent();
             this.mediaPlayerBox.DropDownStyle = ComboBoxStyle.DropDownList;
             this.defaultMediaBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            SaveManager.loadSettings(settingFileLocation, defaultMediaBox, mediaPlayerBox, saveLocation, defaultSaveLocation);
+            SaveManager.loadSettings(settingFileLocation, defaultMediaBox, mediaPlayerBox, saveLocation, defaultSaveLocation,suffixText);
             Initializer.init();
         }
 
@@ -57,7 +57,7 @@ namespace Essential_Now_Playing
 
             if (isStarted)
             {
-                sm = new SourceManager(mediaPlayerBox.Text, saveLocation.Text, previewBox);
+                sm = new SourceManager(mediaPlayerBox.Text, saveLocation.Text, previewBox,suffixText.Text);
                 sm.newSourceHandler();
             }
             else
@@ -88,12 +88,17 @@ namespace Essential_Now_Playing
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            SaveManager.saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox);
+            SaveManager.saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox,suffixText);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SaveManager.saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox, suffixText);
         }
     }
 }
