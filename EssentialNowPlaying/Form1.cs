@@ -17,7 +17,7 @@ namespace Essential_Now_Playing
             InitializeComponent();
             this.mediaPlayerBox.DropDownStyle = ComboBoxStyle.DropDownList;
             this.defaultMediaBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            SaveManager.loadSettings(settingFileLocation, defaultMediaBox, mediaPlayerBox, saveLocation, defaultSaveLocation);
+            SaveManager.loadSettings(settingFileLocation, defaultMediaBox, mediaPlayerBox, saveLocation, defaultSaveLocation, numberOfSpaces);
             Initializer.init();
         }
 
@@ -88,10 +88,19 @@ namespace Essential_Now_Playing
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            SaveManager.saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox);
+            SaveManager.saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox, numberOfSpaces);
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public string NumberOfSpaces {
+            get { return numberOfSpaces.Text; }
+        }
+
+        private void mediaPlayerBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

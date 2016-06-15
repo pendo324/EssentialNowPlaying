@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Essential_Now_Playing
@@ -10,25 +10,27 @@ namespace Essential_Now_Playing
         private Process[] processlist;
         private string path;
         private bool noSong;
-        private bool isVLCUp;
         private bool bStop;
+        private bool isFoobarUp;
         private TextBox preview;
+        private string oldName = null;
 
         public WinAmpHandler(string p, TextBox preview)
         {
             path = p;
             bStop = false;
+            isFoobarUp = true;
             this.preview = preview;
         }
 
-        private Process findWinAmp()
+        private Process findFoobar()
         {
-            Process spotify = null;
+            Process foobar2000 = null;
             processlist = Process.GetProcessesByName("winamp");
 
             if (processlist.Length == 0)
             {
-                isVLCUp = false;
+                isFoobarUp = false;
                 Debug.WriteLine("\n\n\n\nDEBUG\n\n\n");
                 return null;
             }
@@ -40,10 +42,10 @@ namespace Essential_Now_Playing
                     {
                         if (process.MainWindowTitle != "")
                         {
-                            spotify = process;
+                            foobar2000 = process;
                             //Debug.WriteLine("{0} + {1}", "DEBUG", spotify.MainWindowTitle);
                             noSong = false;
-                            isVLCUp = true;
+                            isFoobarUp = true;
                             if (process.MainWindowTitle == "winamp")
                             {
                                 noSong = true;
@@ -52,51 +54,69 @@ namespace Essential_Now_Playing
                     }
                     else
                     {
-                        isVLCUp = false;
+                        isFoobarUp = false;
                     }
                 }
             }
 
-            return spotify;
+            return foobar2000;
         }
 
         async public override Task pollForSongChanges()
         {
             while (!bStop)
             {
-                // get the Spotify process (if it exists)
-                System.IO.StreamWriter writer = new System.IO.StreamWriter(path);
+                // get the foobar process (if it exists)
+
 
                 try
                 {
-                    Process s = findWinAmp();
+                    Process s = findFoobar();
 
                     string songName = s.MainWindowTitle;
                     //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
-                    if (!isVLCUp)
+                    if (!isFoobarUp)
                     {
-                        writer.WriteLine("winamp not open");
-                        preview.Text = "winamp not open";
+                        writeToPath(path, "foobar2000 not open");
+                        preview.Text = "foobar2000 not open";
                     }
                     else if (noSong)
                     {
-                        writer.WriteLine("Paused");
+                        writeToPath(path, "Paused");
                         preview.Text = "Paused";
+                        oldName = null;
                     }
                     else
                     {
-                        preview.Text = songName;
-                        writer.WriteLine(songName);
+                        // only update the song if the song changes
+                        // strip some extra information from the string, like the theme and the program name
+                        songName = s.MainWindowTitle.Substring(0, songName.LastIndexOf("-")) + " ";
+                        if (oldName != null)
+                        {
+                            if (oldName != songName)
+                            {
+                                preview.Text = songName;
+                                writeToPath(path, songName);
+                                oldName = songName;
+                            }
+                        }
+                        else
+                        {
+                            // first run
+                            preview.Text = songName;
+                            writeToPath(path, songName);
+                            oldName = songName;
+                        }
                     }
 
-                    writer.Close();
+
 
                 }
                 catch (NullReferenceException)
                 {
-                    writer.WriteLine("winamp not open");
-                    preview.Text = "winamp not open";
-                    writer.Close();
+                    writeToPath(path, "foobar2000 not open");
+                    preview.Text = "foobar2000 not open";
+
                 }
 
                 await Task.Delay(500);

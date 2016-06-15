@@ -107,6 +107,7 @@
     <Compile Include="foobar2000.cs" />
     <Compile Include="Initializer.cs" />
     <Compile Include="IPC.cs" />
+    <Compile Include="MediaMonkeyHandler.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -195,7 +196,7 @@
   </Target>
   <PropertyGroup>
     <PostBuildEvent>copy /b "$(ProjectDir)$(OutDir)Essential Now Playing.exe" "$(SolutionDir)Release\Essential Now Playing.exe"
-7za a -tzip $(SolutionDir)Release.zip $(SolutionDir)Release\
+7za a -tzip "$(SolutionDir)Release.zip" "$(SolutionDir)Release\"
 7za a -tzip "$(SolutionDir)Chrome Extension.zip" "$(SolutionDir)Chrome Extension\"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

@@ -188,3 +188,19 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/old release
+/.vs/config
+/test.reg
+/Release.zip
+/obs-icon.png
+/media-play.svg
+/manifest.json
+/Chrome Extension.zip
+/Chrome Extension.pem
+/Chrome Extension.crx
+/AddRegistryKey.bat
+/.rnd
+/EssentialNowPlaying/nowplaying.min.js
+/EssentialNowPlaying/nowplaying.js
+/EssentialNowPlaying/MediaMonkeyHandler.cs
+/EssentialNowPlaying/icon.ico
