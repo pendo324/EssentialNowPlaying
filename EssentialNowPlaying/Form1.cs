@@ -19,6 +19,11 @@ namespace Essential_Now_Playing
             this.defaultMediaBox.DropDownStyle = ComboBoxStyle.DropDownList;
             SaveManager.loadSettings(settingFileLocation, defaultMediaBox, mediaPlayerBox, saveLocation, defaultSaveLocation, numberOfSpaces);
             Initializer.init();
+
+            if (!(saveLocation.Text.Length > 0))
+            {
+                this.startButton.Enabled = false;
+            }
         }
 
         private void selectLocation_Click(object sender, EventArgs e)
@@ -29,11 +34,15 @@ namespace Essential_Now_Playing
             savefile.Filter = "Text File*|.txt";
             savefile.Title = "Choose a location for Now Playing";
 
-            if (savefile.ShowDialog() == DialogResult.OK)
+            DialogResult saveStatus;
+            if ((saveStatus = savefile.ShowDialog()) == DialogResult.OK)
             {
                 saveLocation.Text = savefile.FileName;
+                startButton.Enabled = true;
             }
-
+            else if (saveStatus == DialogResult.Cancel)
+            {
+            }
             else
             {
                 throw new Exception("Unable to save file");
