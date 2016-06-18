@@ -6,19 +6,18 @@ namespace Essential_Now_Playing
     class SourceManager
     {
         public bool isWebPlayer;
-        public string source,suffix;
+        public string source;
         private string path;
         private TextBox preview;
         private SourceHandler sh;
         private WebAppHandler wah;
 
-        public SourceManager(string s, string p, TextBox preview,string suffixT)
+        public SourceManager(string s, string p, TextBox preview)
         {
             isWebPlayer = false;
             source = s;
             path = p;
             this.preview = preview;
-            suffix = suffixT;
         }
 
         public void newSourceHandler()
@@ -37,7 +36,7 @@ namespace Essential_Now_Playing
                     Task foobar = sh.pollForSongChanges();
                     break;
                 case "MPC-HC":
-                    sh = new MPCHandler(path, preview,suffix);
+                    sh = new MPCHandler(path, preview);
                     Task mpc = sh.pollForSongChanges();
                     break;
                 case "VLC":

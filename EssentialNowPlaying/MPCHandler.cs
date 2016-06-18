@@ -9,19 +9,18 @@ namespace Essential_Now_Playing
     class MPCHandler : SourceHandler
     {
         private Process[] processlist;
-        private string path,suffix;
+        private string path;
         private bool noSong;
         private bool isVLCUp;
         private bool bStop;
         private TextBox preview;
         private string oldName = null;
 
-        public MPCHandler(string p, TextBox preview,string suffixT)
+        public MPCHandler(string p, TextBox preview)
         {
             path = p;
             bStop = false;
             this.preview = preview;
-            suffix = suffixT;
         }
 
         private Process findMPC()
@@ -80,11 +79,13 @@ namespace Essential_Now_Playing
                     string songName = Path.GetFileNameWithoutExtension(s.MainWindowTitle) + " ";
                     if (!isVLCUp)
                     {
-                        updateText(path, "MPC-HC not open " , suffix);
+                        writeToPath(path, "MPC-HC not open");
+                        preview.Text = "MPC-HC not open";
                     }
                     else if (noSong)
                     {
-                        updateText(path, "Paused " , suffix);
+                        writeToPath(path, "Paused");
+                        preview.Text = "Paused";
                         oldName = null;
                     }
                     else
@@ -95,38 +96,34 @@ namespace Essential_Now_Playing
                         {
                             if (oldName != songName)
                             {
-                                updateText(path, songName , suffix);
+                                preview.Text = songName;
+                                writeToPath(path, songName);
                                 oldName = songName;
                             }
                         }
                         else
                         {
                             // first run
-                            updateText(path, songName , suffix);
+                            preview.Text = songName;
+                            writeToPath(path, songName);
                             oldName = songName;
                         }
                     }
                 }
                 catch (NullReferenceException)
                 {
-                    updateText(path, "MPC-HC not open " , suffix);
+                    writeToPath(path, "MPC-HC not open");
+                    preview.Text = "MPC-HC not open";
 
                 }
 
                 await Task.Delay(1000);
             }
-            Debug.WriteLine("MPC-HC Task done.");
         }
 
         public override void stop()
         {
             bStop = true;
-        }
-
-        private void updateText(string pathStr, string textStr, string suffixText)
-        {
-            writeToPath(pathStr, textStr + suffixText);
-            preview.Text = textStr + suffixText;
         }
     }
 }
