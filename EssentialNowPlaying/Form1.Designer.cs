@@ -38,6 +38,8 @@
             this.selectLocation = new System.Windows.Forms.Button();
             this.mediaPlayerBox = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.numberOfSpaces = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.settingsLocation = new System.Windows.Forms.Button();
             this.defaultSaveLocation = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -77,7 +79,7 @@
             // 
             // previewBox
             // 
-            this.previewBox.Location = new System.Drawing.Point(11, 115);
+            this.previewBox.Location = new System.Drawing.Point(8, 112);
             this.previewBox.Name = "previewBox";
             this.previewBox.ReadOnly = true;
             this.previewBox.Size = new System.Drawing.Size(313, 20);
@@ -86,7 +88,7 @@
             // previewLabel
             // 
             this.previewLabel.AutoSize = true;
-            this.previewLabel.Location = new System.Drawing.Point(8, 98);
+            this.previewLabel.Location = new System.Drawing.Point(5, 95);
             this.previewLabel.Name = "previewLabel";
             this.previewLabel.Size = new System.Drawing.Size(69, 13);
             this.previewLabel.TabIndex = 4;
@@ -124,10 +126,13 @@
             // 
             // mediaPlayerBox
             // 
+            this.mediaPlayerBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mediaPlayerBox.FormattingEnabled = true;
             this.mediaPlayerBox.Items.AddRange(new object[] {
             "foobar2000",
+            "Google Play",
             "iTunes",
+            "MediaMonkey",
             "Mixcloud",
             "MPC-HC",
             "Pandora",
@@ -143,10 +148,12 @@
             this.mediaPlayerBox.Size = new System.Drawing.Size(121, 21);
             this.mediaPlayerBox.Sorted = true;
             this.mediaPlayerBox.TabIndex = 0;
-            this.mediaPlayerBox.Text = "Media Player";
+            this.mediaPlayerBox.SelectedIndexChanged += new System.EventHandler(this.mediaPlayerBox_SelectedIndexChanged);
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.numberOfSpaces);
+            this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.settingsLocation);
             this.tabPage2.Controls.Add(this.defaultSaveLocation);
             this.tabPage2.Controls.Add(this.label1);
@@ -159,6 +166,36 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // numberOfSpaces
+            // 
+            this.numberOfSpaces.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.numberOfSpaces.FormattingEnabled = true;
+            this.numberOfSpaces.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.numberOfSpaces.Location = new System.Drawing.Point(9, 137);
+            this.numberOfSpaces.Name = "numberOfSpaces";
+            this.numberOfSpaces.Size = new System.Drawing.Size(121, 21);
+            this.numberOfSpaces.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 121);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "# of Spaces:";
             // 
             // settingsLocation
             // 
@@ -189,10 +226,13 @@
             // 
             // defaultMediaBox
             // 
+            this.defaultMediaBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.defaultMediaBox.FormattingEnabled = true;
             this.defaultMediaBox.Items.AddRange(new object[] {
             "foobar2000",
+            "Google Play",
             "iTunes",
+            "MediaMonkey",
             "Mixcloud",
             "MPC-HC",
             "Pandora",
@@ -258,6 +298,8 @@
         private System.Windows.Forms.Button settingsLocation;
         private System.Windows.Forms.TextBox previewBox;
         private System.Windows.Forms.Label previewLabel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox numberOfSpaces;
     }
 }
 
