@@ -17,8 +17,13 @@ namespace Essential_Now_Playing
             InitializeComponent();
             this.mediaPlayerBox.DropDownStyle = ComboBoxStyle.DropDownList;
             this.defaultMediaBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            SaveManager.loadSettings(settingFileLocation, defaultMediaBox, mediaPlayerBox, saveLocation, defaultSaveLocation,suffixText);
+            SaveManager.loadSettings(settingFileLocation, defaultMediaBox, mediaPlayerBox, saveLocation, defaultSaveLocation, numberOfSpaces);
             Initializer.init();
+
+            if (!(saveLocation.Text.Length > 0))
+            {
+                this.startButton.Enabled = false;
+            }
         }
 
         private void selectLocation_Click(object sender, EventArgs e)
@@ -29,11 +34,15 @@ namespace Essential_Now_Playing
             savefile.Filter = "Text File*|.txt";
             savefile.Title = "Choose a location for Now Playing";
 
-            if (savefile.ShowDialog() == DialogResult.OK)
+            DialogResult saveStatus;
+            if ((saveStatus = savefile.ShowDialog()) == DialogResult.OK)
             {
                 saveLocation.Text = savefile.FileName;
+                startButton.Enabled = true;
             }
-
+            else if (saveStatus == DialogResult.Cancel)
+            {
+            }
             else
             {
                 throw new Exception("Unable to save file");
@@ -57,7 +66,7 @@ namespace Essential_Now_Playing
 
             if (isStarted)
             {
-                sm = new SourceManager(mediaPlayerBox.Text, saveLocation.Text, previewBox,suffixText.Text);
+                sm = new SourceManager(mediaPlayerBox.Text, saveLocation.Text, previewBox);
                 sm.newSourceHandler();
             }
             else
@@ -88,7 +97,7 @@ namespace Essential_Now_Playing
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            SaveManager.saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox,suffixText);
+            SaveManager.saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox, numberOfSpaces);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -96,9 +105,13 @@ namespace Essential_Now_Playing
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public string NumberOfSpaces {
+            get { return numberOfSpaces.Text; }
+        }
+
+        private void mediaPlayerBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SaveManager.saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox, suffixText);
+
         }
     }
 }

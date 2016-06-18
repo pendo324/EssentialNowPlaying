@@ -48,6 +48,10 @@ namespace Essential_Now_Playing
                     sh = new WinAmpHandler(path, preview);
                     Task winamp = sh.pollForSongChanges();
                     break;
+                case "MediaMonkey":
+                    sh = new MediaMonkeyHandler(path, preview);
+                    Task mmh = sh.pollForSongChanges();
+                    break;
                 case "YouTube":
                     isWebPlayer = true;
                     wah = new WebAppHandler(path, preview, "YouTube");
@@ -76,6 +80,11 @@ namespace Essential_Now_Playing
                 case "tunein":
                     isWebPlayer = true;
                     wah = new WebAppHandler(path, preview, "tunein");
+                    wah.start();
+                    break;
+                case "Google Play":
+                    isWebPlayer = true;
+                    wah = new WebAppHandler(path, preview, "Google Play");
                     wah.start();
                     break;
                 default:

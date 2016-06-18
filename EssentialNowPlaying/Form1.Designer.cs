@@ -38,14 +38,13 @@
             this.selectLocation = new System.Windows.Forms.Button();
             this.mediaPlayerBox = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.suffixText = new System.Windows.Forms.TextBox();
+            this.numberOfSpaces = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.settingsLocation = new System.Windows.Forms.Button();
             this.defaultSaveLocation = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.defaultMediaBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -80,7 +79,7 @@
             // 
             // previewBox
             // 
-            this.previewBox.Location = new System.Drawing.Point(11, 115);
+            this.previewBox.Location = new System.Drawing.Point(8, 112);
             this.previewBox.Name = "previewBox";
             this.previewBox.ReadOnly = true;
             this.previewBox.Size = new System.Drawing.Size(313, 20);
@@ -89,7 +88,7 @@
             // previewLabel
             // 
             this.previewLabel.AutoSize = true;
-            this.previewLabel.Location = new System.Drawing.Point(8, 98);
+            this.previewLabel.Location = new System.Drawing.Point(5, 95);
             this.previewLabel.Name = "previewLabel";
             this.previewLabel.Size = new System.Drawing.Size(69, 13);
             this.previewLabel.TabIndex = 4;
@@ -127,10 +126,13 @@
             // 
             // mediaPlayerBox
             // 
+            this.mediaPlayerBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mediaPlayerBox.FormattingEnabled = true;
             this.mediaPlayerBox.Items.AddRange(new object[] {
             "foobar2000",
+            "Google Play",
             "iTunes",
+            "MediaMonkey",
             "Mixcloud",
             "MPC-HC",
             "Pandora",
@@ -146,13 +148,12 @@
             this.mediaPlayerBox.Size = new System.Drawing.Size(121, 21);
             this.mediaPlayerBox.Sorted = true;
             this.mediaPlayerBox.TabIndex = 0;
-            this.mediaPlayerBox.Text = "Media Player";
+            this.mediaPlayerBox.SelectedIndexChanged += new System.EventHandler(this.mediaPlayerBox_SelectedIndexChanged);
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button1);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.suffixText);
+            this.tabPage2.Controls.Add(this.numberOfSpaces);
+            this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.settingsLocation);
             this.tabPage2.Controls.Add(this.defaultSaveLocation);
             this.tabPage2.Controls.Add(this.label1);
@@ -166,21 +167,35 @@
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // numberOfSpaces
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 125);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Custom Text Suffix";
+            this.numberOfSpaces.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.numberOfSpaces.FormattingEnabled = true;
+            this.numberOfSpaces.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.numberOfSpaces.Location = new System.Drawing.Point(9, 137);
+            this.numberOfSpaces.Name = "numberOfSpaces";
+            this.numberOfSpaces.Size = new System.Drawing.Size(121, 21);
+            this.numberOfSpaces.TabIndex = 9;
             // 
-            // suffixText
+            // label4
             // 
-            this.suffixText.Location = new System.Drawing.Point(9, 144);
-            this.suffixText.Name = "suffixText";
-            this.suffixText.Size = new System.Drawing.Size(315, 20);
-            this.suffixText.TabIndex = 6;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 121);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "# of Spaces:";
             // 
             // settingsLocation
             // 
@@ -211,10 +226,13 @@
             // 
             // defaultMediaBox
             // 
+            this.defaultMediaBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.defaultMediaBox.FormattingEnabled = true;
             this.defaultMediaBox.Items.AddRange(new object[] {
             "foobar2000",
+            "Google Play",
             "iTunes",
+            "MediaMonkey",
             "Mixcloud",
             "MPC-HC",
             "Pandora",
@@ -239,16 +257,6 @@
             this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Default Media Player:";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(267, 184);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(57, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -290,9 +298,8 @@
         private System.Windows.Forms.Button settingsLocation;
         private System.Windows.Forms.TextBox previewBox;
         private System.Windows.Forms.Label previewLabel;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox suffixText;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox numberOfSpaces;
     }
 }
 

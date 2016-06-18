@@ -11,11 +11,11 @@ namespace Essential_Now_Playing
 {
     class SaveManager
     {
-        static public void loadSettings(string settingFileLocation, ComboBox mediaPlayerBox, ComboBox defaultMediaBox, TextBox saveLocation, TextBox defaultSaveLocation, TextBox suffixText)
+        static public void loadSettings(string settingFileLocation, ComboBox mediaPlayerBox, ComboBox defaultMediaBox, TextBox saveLocation, TextBox defaultSaveLocation, ComboBox numberOfSpaces)
         {
             string defaultLocation = "";
             string defaultPlayer = "";
-            string defaultSuffix = "";
+            string spaces = "";
 
             try
             {
@@ -27,18 +27,18 @@ namespace Essential_Now_Playing
 
                     defaultPlayer = data[0].player;
                     defaultLocation = data[0].path;
-                    defaultSuffix = data[0].suffix;
+                    spaces = data[0].spaces;
                 }
 
                 defaultMediaBox.SelectedIndex = mediaPlayerBox.SelectedIndex = mediaPlayerBox.FindString(defaultPlayer);
                 saveLocation.Text = defaultSaveLocation.Text = defaultLocation;
-                suffixText.Text = defaultSuffix;
+                numberOfSpaces.SelectedIndex = numberOfSpaces.FindString(spaces);
             }
             catch (Exception ex)
             {
                 if (ex is FileNotFoundException || ex is Newtonsoft.Json.JsonReaderException)
                 {
-                    saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox, suffixText);
+                    saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox, numberOfSpaces);
                 }
                 else
                 {
@@ -47,14 +47,14 @@ namespace Essential_Now_Playing
             }
         }
 
-        static public void saveSettings(string settingFileLocation, TextBox textBox2, ComboBox comboBox1, TextBox textBox3)
+        static public void saveSettings(string settingFileLocation, TextBox textBox2, ComboBox comboBox1, ComboBox numberOfSpaces)
         {
             List<settings> data = new List<settings>();
             data.Add(new settings()
             {
                 path = textBox2.Text,
                 player = comboBox1.Text,
-                suffix = textBox3.Text
+                spaces = numberOfSpaces.Text
             });
 
             string json = JsonConvert.SerializeObject(data.ToArray());
@@ -65,6 +65,8 @@ namespace Essential_Now_Playing
         {
             public string path;
             public string player;
+            public string spaces;
+            public string prefix;
             public string suffix;
         }
 

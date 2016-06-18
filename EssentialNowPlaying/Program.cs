@@ -16,7 +16,8 @@ namespace Essential_Now_Playing
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Form mainWindow = new Form1();
+            Application.Run(mainWindow);
         }
     }
 }

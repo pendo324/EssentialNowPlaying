@@ -63,7 +63,7 @@ function play() {
         songTitle = 'Paused';
     } else {
         artist = $(document).find('#player-artist').text();
-        song = $(document).find('#player-song-title').text();
+        song = $(document).find('#currently-playing-title').text();
         songTitle = artist + " - " + song;
     }
 
