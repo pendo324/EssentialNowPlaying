@@ -79,12 +79,12 @@ namespace Essential_Now_Playing
                     string songName = Path.GetFileNameWithoutExtension(s.MainWindowTitle) + " ";
                     if (!isMPCUp)
                     {
-                        writeToPath(path, "MPC-HC not open",true);
+                        writeToPath(path, "MPC-HC not open", true);
                         //preview.Text = "MPC-HC not open";
                     }
                     else if (noSong)
                     {
-                        writeToPath(path, "Paused",true);
+                        writeToPath(path, "Paused", true);
                         //preview.Text = "Paused";
                         oldName = null;
                     }
@@ -97,7 +97,7 @@ namespace Essential_Now_Playing
                             if (oldName != songName)
                             {
                                 //preview.Text = songName;
-                                writeToPath(path, songName,true);
+                                writeToPath(path, songName, true);
                                 oldName = songName;
                             }
                         }
@@ -105,14 +105,14 @@ namespace Essential_Now_Playing
                         {
                             // first run
                             //preview.Text = songName;
-                            writeToPath(path, songName,true);
+                            writeToPath(path, songName, true);
                             oldName = songName;
                         }
                     }
                 }
                 catch (NullReferenceException)
                 {
-                    writeToPath(path, "MPC-HC not open",true);
+                    writeToPath(path, "MPC-HC not open", true);
                     //preview.Text = "MPC-HC not open";
 
                 }

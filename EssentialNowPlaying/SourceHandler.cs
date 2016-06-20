@@ -21,7 +21,7 @@ namespace Essential_Now_Playing
         Form currentForm = Form.ActiveForm;
 
         // wrapper for File.WriteAllText
-        public void writeToPath(string path, string text, bool writePreview=false)
+        public void writeToPath(string path, string text, bool writePreview = false)
         {
             string tmpStr = text;
 
