@@ -77,13 +77,13 @@ namespace Essential_Now_Playing
                     //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
                     if (!isFoobarUp)
                     {
-                        writeToPath(path, "foobar2000 not open");
-                        preview.Text = "foobar2000 not open";
+                        writeToPath(path, "foobar2000 not open", true);
+                        //preview.Text = "foobar2000 not open";
                     }
                     else if (noSong)
                     {
-                        writeToPath(path, "Paused");
-                        preview.Text = "Paused";
+                        writeToPath(path, "Paused", true);
+                        //preview.Text = "Paused";
                         oldName = null;
                     }
                     else
@@ -95,16 +95,16 @@ namespace Essential_Now_Playing
                         {
                             if (oldName != songName)
                             {
-                                preview.Text = songName;
-                                writeToPath(path, songName);
+                                //preview.Text = songName;
+                                writeToPath(path, songName, true);
                                 oldName = songName;
                             }
                         }
                         else
                         {
                             // first run
-                            preview.Text = songName;
-                            writeToPath(path, songName);
+                            //preview.Text = songName;
+                            writeToPath(path, songName, true);
                             oldName = songName;
                         }
                     }
@@ -114,8 +114,8 @@ namespace Essential_Now_Playing
                 }
                 catch (NullReferenceException)
                 {
-                    writeToPath(path, "foobar2000 not open");
-                    preview.Text = "foobar2000 not open";
+                    writeToPath(path, "foobar2000 not open", true);
+                    //preview.Text = "foobar2000 not open";
                     
                 }
 

@@ -66,7 +66,7 @@ namespace Essential_Now_Playing
             while (!bStop)
             {
                 // get the Spotify process (if it exists)
-                
+
 
                 try
                 {
@@ -76,13 +76,13 @@ namespace Essential_Now_Playing
                     //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
                     if (!isVLCUp)
                     {
-                        writeToPath(path, "VLC not open");
-                        preview.Text = "VLC not open";
+                        writeToPath(path, "VLC not open", true);
+                        //preview.Text = "VLC not open";
                     }
                     else if (noSong)
                     {
-                        writeToPath(path, "Paused");
-                        preview.Text = "Paused";
+                        writeToPath(path, "Paused", true);
+                        //preview.Text = "Paused";
                         oldName = null;
                     }
                     else
@@ -93,28 +93,28 @@ namespace Essential_Now_Playing
                         {
                             if (oldName != songName)
                             {
-                                preview.Text = songName;
-                                writeToPath(path, songName);
+                                //preview.Text = songName;
+                                writeToPath(path, songName, true);
                                 oldName = songName;
                             }
                         }
                         else
                         {
                             // first run
-                            preview.Text = songName;
-                            writeToPath(path, songName);
+                            //preview.Text = songName;
+                            writeToPath(path, songName, true);
                             oldName = songName;
                         }
                     }
 
-                    
+
 
                 }
                 catch (NullReferenceException)
                 {
-                    writeToPath(path, "VLC not open");
-                    preview.Text = "VLC not open";
-                    
+                    writeToPath(path, "VLC not open", true);
+                    //preview.Text = "VLC not open";
+
                 }
 
                 await Task.Delay(500);
