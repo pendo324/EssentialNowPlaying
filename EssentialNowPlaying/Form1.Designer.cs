@@ -38,13 +38,18 @@
             this.selectLocation = new System.Windows.Forms.Button();
             this.mediaPlayerBox = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.numberOfSpaces = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.settingsLocation = new System.Windows.Forms.Button();
             this.defaultSaveLocation = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.defaultMediaBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.prefixBox = new System.Windows.Forms.TextBox();
+            this.suffixBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.checkPrefix = new System.Windows.Forms.CheckBox();
+            this.checkSuffix = new System.Windows.Forms.CheckBox();
+            this.saveBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -152,8 +157,13 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.numberOfSpaces);
+            this.tabPage2.Controls.Add(this.saveBtn);
+            this.tabPage2.Controls.Add(this.checkSuffix);
+            this.tabPage2.Controls.Add(this.checkPrefix);
             this.tabPage2.Controls.Add(this.label4);
+            this.tabPage2.Controls.Add(this.suffixBox);
+            this.tabPage2.Controls.Add(this.prefixBox);
+            this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.settingsLocation);
             this.tabPage2.Controls.Add(this.defaultSaveLocation);
             this.tabPage2.Controls.Add(this.label1);
@@ -166,36 +176,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // numberOfSpaces
-            // 
-            this.numberOfSpaces.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.numberOfSpaces.FormattingEnabled = true;
-            this.numberOfSpaces.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.numberOfSpaces.Location = new System.Drawing.Point(9, 137);
-            this.numberOfSpaces.Name = "numberOfSpaces";
-            this.numberOfSpaces.Size = new System.Drawing.Size(121, 21);
-            this.numberOfSpaces.TabIndex = 9;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 121);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "# of Spaces:";
             // 
             // settingsLocation
             // 
@@ -258,6 +238,68 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Default Media Player:";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 110);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Prefix";
+            // 
+            // prefixBox
+            // 
+            this.prefixBox.Location = new System.Drawing.Point(8, 126);
+            this.prefixBox.Name = "prefixBox";
+            this.prefixBox.Size = new System.Drawing.Size(253, 20);
+            this.prefixBox.TabIndex = 7;
+            // 
+            // suffixBox
+            // 
+            this.suffixBox.Location = new System.Drawing.Point(8, 165);
+            this.suffixBox.Name = "suffixBox";
+            this.suffixBox.Size = new System.Drawing.Size(253, 20);
+            this.suffixBox.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 149);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Suffix";
+            // 
+            // checkPrefix
+            // 
+            this.checkPrefix.AutoSize = true;
+            this.checkPrefix.Location = new System.Drawing.Point(268, 128);
+            this.checkPrefix.Name = "checkPrefix";
+            this.checkPrefix.Size = new System.Drawing.Size(45, 17);
+            this.checkPrefix.TabIndex = 10;
+            this.checkPrefix.Text = "Add";
+            this.checkPrefix.UseVisualStyleBackColor = true;
+            // 
+            // checkSuffix
+            // 
+            this.checkSuffix.AutoSize = true;
+            this.checkSuffix.Location = new System.Drawing.Point(267, 168);
+            this.checkSuffix.Name = "checkSuffix";
+            this.checkSuffix.Size = new System.Drawing.Size(45, 17);
+            this.checkSuffix.TabIndex = 11;
+            this.checkSuffix.Text = "Add";
+            this.checkSuffix.UseVisualStyleBackColor = true;
+            // 
+            // saveBtn
+            // 
+            this.saveBtn.Location = new System.Drawing.Point(267, 198);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(57, 20);
+            this.saveBtn.TabIndex = 12;
+            this.saveBtn.Text = "Save";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,8 +340,13 @@
         private System.Windows.Forms.Button settingsLocation;
         private System.Windows.Forms.TextBox previewBox;
         private System.Windows.Forms.Label previewLabel;
+        private System.Windows.Forms.CheckBox checkSuffix;
+        private System.Windows.Forms.CheckBox checkPrefix;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox numberOfSpaces;
+        private System.Windows.Forms.TextBox suffixBox;
+        private System.Windows.Forms.TextBox prefixBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button saveBtn;
     }
 }
 

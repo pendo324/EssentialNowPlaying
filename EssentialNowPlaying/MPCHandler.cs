@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -10,7 +11,7 @@ namespace Essential_Now_Playing
         private Process[] processlist;
         private string path;
         private bool noSong;
-        private bool isVLCUp;
+        private bool isMPCUp;
         private bool bStop;
         private TextBox preview;
         private string oldName = null;
@@ -24,65 +25,67 @@ namespace Essential_Now_Playing
 
         private Process findMPC()
         {
-            Process spotify = null;
-            processlist = Process.GetProcessesByName("MPC-HC");
+            Process MPCHCProc = null;
+            processlist = Process.GetProcessesByName("mpc-hc");
 
             if (processlist.Length == 0)
             {
-                isVLCUp = false;
-                Debug.WriteLine("\n\n\n\nDEBUG\n\n\n");
-                return null;
-            }
-            else
-            {
-                foreach (Process process in processlist)
+                processlist = Process.GetProcessesByName("mpc-hc64");
+                if (processlist.Length == 0)
                 {
-                    if (process.ProcessName == "MPC-HC")
-                    {
-                        if (process.MainWindowTitle != "")
-                        {
-                            spotify = process;
-                            //Debug.WriteLine("{0} + {1}", "DEBUG", spotify.MainWindowTitle);
-                            noSong = false;
-                            isVLCUp = true;
-                            if (process.MainWindowTitle == "MPC-HC")
-                            {
-                                noSong = true;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        isVLCUp = false;
-                    }
+                    isMPCUp = false;
+                    return null;
+                }
+            }
+            foreach (Process process in processlist)
+            {
+                if (process.ProcessName == "mpc-hc64" || process.ProcessName == "mpc-hc")
+                {
+                    MPCHCProc = process;
+                    isMPCUp = true;
+                }
+                else
+                {
+                    isMPCUp = false;
                 }
             }
 
-            return spotify;
+            return MPCHCProc;
         }
 
         async public override Task pollForSongChanges()
         {
+            Process s = findMPC();
             while (!bStop)
             {
-                // get the Spotify process (if it exists)
-                
+                s.Refresh();
+                if (s.HasExited)
+                {
+                    bStop = true;
+                    break;
+                }
 
+                if (s.MainWindowTitle == "Media Player Classic Home Cinema")
+                {
+                    noSong = true;
+                }
+                else
+                {
+                    noSong = false;
+                }
                 try
                 {
-                    Process s = findMPC();
 
-                    string songName = s.MainWindowTitle + " ";
-                    //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
-                    if (!isVLCUp)
+                    string songName = Path.GetFileNameWithoutExtension(s.MainWindowTitle) + " ";
+                    if (!isMPCUp)
                     {
-                        writeToPath(path, "MPC-HC not open");
-                        preview.Text = "MPC-HC not open";
+                        writeToPath(path, "MPC-HC not open",true);
+                        //preview.Text = "MPC-HC not open";
                     }
                     else if (noSong)
                     {
-                        writeToPath(path, "Paused");
-                        preview.Text = "Paused";
+                        writeToPath(path, "Paused",true);
+                        //preview.Text = "Paused";
                         oldName = null;
                     }
                     else
@@ -93,32 +96,28 @@ namespace Essential_Now_Playing
                         {
                             if (oldName != songName)
                             {
-                                preview.Text = songName;
-                                writeToPath(path, songName);
+                                //preview.Text = songName;
+                                writeToPath(path, songName,true);
                                 oldName = songName;
                             }
                         }
                         else
                         {
                             // first run
-                            preview.Text = songName;
-                            writeToPath(path, songName);
+                            //preview.Text = songName;
+                            writeToPath(path, songName,true);
                             oldName = songName;
                         }
                     }
-
-
-                    
-
                 }
                 catch (NullReferenceException)
                 {
-                    writeToPath(path, "MPC-HC not open");
-                    preview.Text = "MPC-HC not open";
-                    
+                    writeToPath(path, "MPC-HC not open",true);
+                    //preview.Text = "MPC-HC not open";
+
                 }
 
-                await Task.Delay(500);
+                await Task.Delay(1000);
             }
         }
 

@@ -11,11 +11,14 @@ namespace Essential_Now_Playing
 {
     class SaveManager
     {
-        static public void loadSettings(string settingFileLocation, ComboBox mediaPlayerBox, ComboBox defaultMediaBox, TextBox saveLocation, TextBox defaultSaveLocation, ComboBox numberOfSpaces)
+        static public void loadSettings(string settingFileLocation, ComboBox mediaPlayerBox, ComboBox defaultMediaBox, TextBox saveLocation, TextBox defaultSaveLocation, TextBox prefixBox, TextBox suffixBox, CheckBox addPrefixCB, CheckBox addSuffixCB)
         {
             string defaultLocation = "";
             string defaultPlayer = "";
-            string spaces = "";
+            string prefix = "";
+            string suffix = "";
+            bool addSuffixB = false;
+            bool addPrefixB = false;
 
             try
             {
@@ -27,18 +30,27 @@ namespace Essential_Now_Playing
 
                     defaultPlayer = data[0].player;
                     defaultLocation = data[0].path;
-                    spaces = data[0].spaces;
+                    prefix = data[0].prefix;
+                    suffix = data[0].suffix;
+                    if (data[0].addPrefix != null)
+                        addPrefixB = data[0].addPrefix;
+                    if (data[0].addSuffix != null)
+                        addSuffixB = data[0].addSuffix;
+
                 }
 
                 defaultMediaBox.SelectedIndex = mediaPlayerBox.SelectedIndex = mediaPlayerBox.FindString(defaultPlayer);
                 saveLocation.Text = defaultSaveLocation.Text = defaultLocation;
-                numberOfSpaces.SelectedIndex = numberOfSpaces.FindString(spaces);
+                prefixBox.Text = prefix;
+                suffixBox.Text = suffix;
+                addPrefixCB.Checked = addPrefixB;
+                addSuffixCB.Checked = addSuffixB;
             }
             catch (Exception ex)
             {
                 if (ex is FileNotFoundException || ex is Newtonsoft.Json.JsonReaderException)
                 {
-                    saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox, numberOfSpaces);
+                    saveSettings(settingFileLocation, defaultSaveLocation, defaultMediaBox, prefixBox, suffixBox, addPrefixCB, addSuffixCB);
                 }
                 else
                 {
@@ -47,14 +59,17 @@ namespace Essential_Now_Playing
             }
         }
 
-        static public void saveSettings(string settingFileLocation, TextBox textBox2, ComboBox comboBox1, ComboBox numberOfSpaces)
+        static public void saveSettings(string settingFileLocation, TextBox textBox2, ComboBox comboBox1, TextBox prefixBox, TextBox suffixBox, CheckBox addPrefixCB, CheckBox addSuffixCB)
         {
             List<settings> data = new List<settings>();
             data.Add(new settings()
             {
                 path = textBox2.Text,
                 player = comboBox1.Text,
-                spaces = numberOfSpaces.Text
+                prefix = prefixBox.Text,
+                suffix = suffixBox.Text,
+                addPrefix = addPrefixCB.Checked,
+                addSuffix = addSuffixCB.Checked
             });
 
             string json = JsonConvert.SerializeObject(data.ToArray());
@@ -65,9 +80,10 @@ namespace Essential_Now_Playing
         {
             public string path;
             public string player;
-            public string spaces;
             public string prefix;
             public string suffix;
+            public bool addPrefix;
+            public bool addSuffix;
         }
 
     }
