@@ -76,15 +76,15 @@ namespace Essential_Now_Playing
                     //Debug.WriteLine("{0} + {1}", "DEBUG", s.MainWindowTitle);
                     if (!isSpotifyUp)
                     {
-                        writeToPath(path, "Spotify not open");
+                        writeToPath(path, "Spotify not open", true);
 
-                        preview.Text = "Spotify not open";
+                        //preview.Text = "Spotify not open";
                     }
                     else if (noSong)
                     {
-                        writeToPath(path, "Paused");
+                        writeToPath(path, "Paused", true);
 
-                        preview.Text = "Paused";
+                        //preview.Text = "Paused";
                         oldName = null;
                     }
                     else
@@ -94,24 +94,24 @@ namespace Essential_Now_Playing
                         {
                             if (string.Compare(oldName, songName) != 0)
                             {
-                                preview.Text = songName;
-                                writeToPath(path, songName);
+                                //preview.Text = songName;
+                                writeToPath(path, songName, true);
                                 oldName = songName;
                             }
                         }
                         else
                         {
                             // first run
-                            preview.Text = songName;
-                            writeToPath(path, songName);
+                            //preview.Text = songName;
+                            writeToPath(path, songName, true);
                             oldName = songName;
                         }
                     }
                 }
                 catch (NullReferenceException)
                 {
-                    writeToPath(path, "Spotify not open");
-                    preview.Text = "Spotify not open";
+                    writeToPath(path, "Spotify not open", true);
+                    //preview.Text = "Spotify not open";
                 }
                 
                 await Task.Delay(500);

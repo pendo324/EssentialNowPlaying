@@ -56,8 +56,8 @@ namespace Essential_Now_Playing
 
                 if (!findItunes())
                 {
-                    writeToPath(path, "iTunes not open");
-                    preview.Text = "iTunes not open";
+                    writeToPath(path, "iTunes not open", true);
+                    //preview.Text = "iTunes not open";
                     oldName = null;
                 }
                 else
@@ -73,15 +73,15 @@ namespace Essential_Now_Playing
                             fullName = artist + " - " + songName + " ";
                             if (fullName != oldName)
                             {
-                                writeToPath(path, fullName);
-                                preview.Text = fullName;
+                                writeToPath(path, fullName, true);
+                                //preview.Text = fullName;
                                 oldName = fullName;
                             }
                         }
                         else
                         {
-                            writeToPath(path, "Paused");
-                            preview.Text = "Paused";
+                            writeToPath(path, "Paused", true);
+                            //preview.Text = "Paused";
                             oldName = null;
                         }
                     }
@@ -93,14 +93,14 @@ namespace Essential_Now_Playing
                             songName = ITrack.Name;
                             artist = ITrack.Artist;
                             fullName = artist + " - " + songName + " ";
-                            writeToPath(path, fullName);
-                            preview.Text = fullName;
+                            writeToPath(path, fullName, true);
+                            //preview.Text = fullName;
                             oldName = fullName;
                         }
                         else
                         {
-                            writeToPath(path, "Paused");
-                            preview.Text = "Paused";
+                            writeToPath(path, "Paused", true);
+                            //preview.Text = "Paused";
                             oldName = null;
                         }
                     }
