@@ -79,8 +79,14 @@ function spotify() {
     var split = $('title').text().split(' - ');
 
     if (split.length == 3) {
-        artist = split[1]
-        song = split[0];
+        artist = split[1];
+        
+        if(split[0].substr(0,1) == "▶") {
+        	song = split[0].substr(1);
+        } else {
+        	song = split[0];
+        }
+
         songTitle = artist + ' - ' + song;
     } else {
         songTitle = "Paused";
