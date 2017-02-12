@@ -16,7 +16,8 @@ players = {
     "play.spotify.com": spotify,
     "soundcloud": soundcloud,
     "tunein": tunein,
-    "youtube": youtube
+    "youtube": youtube,
+    "deezer": deezer
 };
 
 function mixcloud() {
@@ -146,6 +147,24 @@ function youtube() {
     };
 }
 
+function deezer() {
+    var artist, song, songTitle;
+    var wp = "Deezer";
+
+    if($(document).find('.player-track-title').text() === undefined || $(document).find('.player-track-title').text() === null) {
+        songTitle = 'Paused';
+    } else {
+        artist = $(document).find('.player-track-artist').text();
+        song = $(document).find('.player-track-title').text();
+        songTitle = artist.substr(3) + " - " + song;
+    }
+
+    return {
+        song: songTitle,
+        webPlayer: wp
+    };
+}
+
 // sets the song variable, send it to localhost and makes the 
 // appropriate changes to the html object(s)
 // TODO: add the html shit
@@ -206,7 +225,7 @@ function checkSupport() {
 }
 
 function addHTML() {
-    var html = "<div id='npiframe-container style='visibility:hidden'><iframe name='npiframe'></iframe></div><div class=NowPlayingContainer><style>.NowPlayingContainer{background-color:#343434;border:2px solid #3c3c3c;color:#f5f5f5;position:fixed;bottom:50px;right:30px;width:300px;min-height:100px;z-index:10000;}.NowPlayingHeader{margin:10px;line-height:18px;font-family:arial;font-size:16px}.NowPlayingBody{margin-top:15px;margin-left:10px;line-height:16px;font-family:arial;font-size:14px}.NowPlayingSupported{margin-left:65px;margin-top:-20px;line-height:16px;font-family:arial;font-size:14px}.NowPlayingSupported a:link{color:#09F}.NowPlayingSupported a:visited{color: #CC0099;}.NowPlayingButton{margin-left:10px;line-height:16px;font-family:arial;font-size:14px}</style><div><div class=NowPlayingHeader>OBS Now Playing</div><button class=NowPlayingButton>Start</button><div class=NowPlayingSupported></div><div class=NowPlayingBody>No song playing.</div></div></div>";
+    var html = "<div id='npiframe-container style='visibility:hidden'><iframe name='npiframe'></iframe></div><div class=NowPlayingContainer><style>.NowPlayingContainer{background-color:#343434;border:2px solid #3c3c3c;border-radius:4px;color:#f5f5f5;position:fixed;bottom:50px;right:30px;width:300px;min-height:100px;z-index:10000;}.NowPlayingHeader{margin:10px;line-height:18px;font-family:arial;font-size:16px}.NowPlayingBody{margin-top:15px;margin-bottom:10px;margin-left:10px;line-height:16px;font-family:arial;font-size:14px}.NowPlayingSupported{margin-left:70px;margin-top:-20px;line-height:16px;font-family:arial;font-size:14px}.NowPlayingSupported a:link{color:#09F}.NowPlayingSupported a:visited{color: #CC0099;}.NowPlayingButton{all:unset;background-color:#008CBA;margin-left:10px;line-height:16px;font-family:arial;font-size:14px;color:#FFFFFF;padding:5px 10px;border-radius:4px;cursor:pointer;}.NowPlayingButton:hover{background-color:#00BFED}</style><div><div class=NowPlayingHeader>OBS Now Playing</div><button class=NowPlayingButton>Start</button><div class=NowPlayingSupported></div><div class=NowPlayingBody>No song playing.</div></div></div>";
     $('body').append(html);
 }
 
