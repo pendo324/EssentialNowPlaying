@@ -86,6 +86,11 @@ namespace Essential_Now_Playing
                     wah = new WebAppHandler(path, preview, "Google Play");
                     wah.start();
                     break;
+                case "Deezer":
+                    isWebPlayer = true;
+                    wah = new WebAppHandler(path, preview, "Deezer");
+                    wah.start();
+                    break;
                 default:
                     break;
             }
