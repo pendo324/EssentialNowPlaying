@@ -42,12 +42,23 @@ function pandora() {
     var artist, song, songTitle;
     var wp = "Pandora";
 
-    if ($(document).find('.nowPlayingTopInfo__current__trackName').text() === undefined || $(document).find('.nowPlayingTopInfo__current__trackName').text() === null) {
-        songTitle = 'Paused';
+    if($('div.App').length) { //Checks if Pandora is the new player
+        if ($(document).find('.nowPlayingTopInfo__current__trackName').text() === undefined || $(document).find('.nowPlayingTopInfo__current__trackName').text() === null) {
+            songTitle = 'Paused';
+        } else {
+            artist = $(document).find('.nowPlayingTopInfo__current__artistName').text();
+            song = $(document).find('.nowPlayingTopInfo__current__trackName').text();
+            songTitle = artist + ' - ' + song;
+        }
+
     } else {
-        artist = $(document).find('.nowPlayingTopInfo__current__artistName').text();
-        song = $(document).find('.nowPlayingTopInfo__current__trackName').text();
-        songTitle = artist + ' - ' + song;
+        if ($(document).find('.playerBarSong').text() === undefined || $(document).find('.playerBarSong').text() === null) {
+            songTitle = 'Paused';
+        } else {
+            artist = $(document).find('.playerBarArtist').text();
+            song = $(document).find('.playerBarSong').text();
+            songTitle = artist + ' - ' + song;
+        }
     }
 
     return {
@@ -204,11 +215,13 @@ function init() {
 function start() {
     setSong();
     interval = setInterval(setSong, 2000);
+    $(".NowPlayingButton").css("background-color", "#F44336");
 }
 
 function stop() {
     if (interval != null) {
         clearInterval(interval);
+        $(".NowPlayingButton").css("background-color", "#008CBA");
     }
 }
 
@@ -225,7 +238,7 @@ function checkSupport() {
 }
 
 function addHTML() {
-    var html = "<div id='npiframe-container style='visibility:hidden'><iframe name='npiframe'></iframe></div><div class=NowPlayingContainer><style>.NowPlayingContainer{all:unset;background-color:#343434;border:2px solid #3c3c3c;border-radius:4px;color:#f5f5f5;position:fixed;bottom:50px;right:30px;width:300px;min-height:100px;z-index:10000;}.NowPlayingHeader{margin:10px;line-height:18px;font-family:arial;font-size:16px}.NowPlayingBody{margin-top:15px;margin-bottom:10px;margin-left:10px;line-height:16px;font-family:arial;font-size:14px}.NowPlayingSupported{margin-left:70px;margin-top:-20px;line-height:16px;font-family:arial;font-size:14px}.NowPlayingSupported a:link{color:#09F}.NowPlayingSupported a:visited{color: #CC0099;}.NowPlayingButton{all:unset;background-color:#008CBA;margin-left:10px;line-height:16px;font-family:arial;font-size:14px;color:#FFFFFF;padding:5px 10px;border-radius:4px;cursor:pointer;}.NowPlayingButton:hover{background-color:#00BFED}</style><div><div class=NowPlayingHeader>Essential Now Playing</div><button class=NowPlayingButton>Start</button><div class=NowPlayingSupported></div><div class=NowPlayingBody>No song playing.</div></div></div>";
+    var html = "<div class=NowPlayingContainer><style>.NowPlayingContainer{all:unset;text-align:left;background-color:#343434;border:2px solid #3c3c3c;border-radius:4px;color:#f5f5f5;position:fixed;bottom:50px;right:30px;width:300px;min-height:100px;z-index:10000;}.NowPlayingHeader{margin:10px;line-height:18px;font-family:arial;font-size:16px}.NowPlayingBody{margin-top:15px;margin-bottom:10px;margin-left:10px;line-height:16px;font-family:arial;font-size:14px}.NowPlayingSupported{margin-left:70px;margin-top:-20px;line-height:16px;font-family:arial;font-size:14px}.NowPlayingSupported a:link{color:#09F}.NowPlayingSupported a:visited{color: #CC0099;}.NowPlayingButton{all:unset;background-color:#008CBA;margin-left:10px;line-height:16px;font-family:arial;font-size:14px;color:#FFFFFF;padding:5px 10px;border-radius:4px;cursor:pointer;}.NowPlayingButton:hover{background-color:#00BFED}</style><div class=NowPlayingHeader>Essential Now Playing</div><button class=NowPlayingButton>Start</button><div class=NowPlayingSupported></div><div class=NowPlayingBody>No song playing.</div></div>";
     $('body').append(html);
 }
 
