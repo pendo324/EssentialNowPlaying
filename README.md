@@ -11,6 +11,7 @@ Currently supported:
     * VLC
     * MPC-HC
     * foobar2000
+    * MediaMonkey
   - WebApps:
     * Mixcloud
     * Spotify web player (play.spotify.com)
@@ -19,6 +20,7 @@ Currently supported:
     * YouTube
     * Pandora
     * Google Play (play.google.com)
+    * Deezer
 
 Planned players to support:
 * Nothing at the moment, just stability fixes
@@ -28,7 +30,17 @@ This application is completely portable. All that is required is that the two ``
 
 To use the WebApps, you'll need install the companion extension from the webstore. Here's a link to it: https://chrome.google.com/webstore/detail/now-playing-companion/aocghdlnkcebaipehcejjpeiijpdjldo.
 
-Then, on any supported site, press that new icon in the top right of your browser then press the button inside that, and then on the bottom right of the page, there will be a new text box, press "Start" to link it up with the desktop application and you're done!
+To use the WebApps you need to do the following:
+
+1. Open Essential Now Playing.
+2. Select the Player and set the file path.
+3. Head to any supported web player.
+4. Click on the Now Playing Companion Extension and "Use on this page".
+(You should see the NativeMessagingInterface background process start up in Task Manager)
+5. On the web pop-up click "Start".
+6. Go back to Essential Now Playing app and hit "Start!".
+
+Be sure that the desktop application is running before activating the Chrome extension.
 
 #### Note: WebApps will not function if ```NativeMessagingInterface.exe``` is not in the same directory as ```Essential Now Playing.exe```.
 Please ensure that they are in the same directory before creating an issue.
