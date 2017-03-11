@@ -90,13 +90,14 @@ function spotify() {
     var wp = "Spotify";
     var split = $('title').text().split(' - ');
 
-    if (split.length == 3) {
-        artist = split[1];
+    if (split.length >= 3) {
+        artist = split[split.length - 2];
         
         if(split[0].substr(0,1) == "▶") {
-        	song = split[0].substr(1);
+            split[0] = split[0].substr(1);
+            song = split.slice(0, split.length - 2).join(" - ");
         } else {
-        	song = split[0];
+        	song = split.slice(0, split.length - 2).join(" - ");
         }
 
         songTitle = artist + ' - ' + song;

@@ -3,7 +3,7 @@
 
     "name": "Now Playing Companion",
     "description": "Browser helper for the desktop application, OBS Now Playing",
-    "version": "1.3.1",
+    "version": "1.3.2",
 
     "icons": {
         "48": "icon.png"
