@@ -93,11 +93,11 @@ function spotify() {
     if (split.length >= 3) {
         artist = split[split.length - 2];
         
-        if(split[0].substr(0,1) == "▶") {
+        if(split[0].substr(0,1) === "▶") {
             split[0] = split[0].substr(1);
             song = split.slice(0, split.length - 2).join(" - ");
         } else {
-        	song = split.slice(0, split.length - 2).join(" - ");
+            song = split.slice(0, split.length - 2).join(" - ");
         }
 
         songTitle = artist + ' - ' + song;
@@ -114,10 +114,12 @@ function spotify() {
 function soundcloud() {
     var songTitle;
     var wp = "Soundcloud";
-    if ($(document).find('.playbackSoundBadge__title').attr('title') === undefined || $(document).find('.playbackSoundBadge__title').attr('title') === null) {
+    console.log(songTitle = $(document).find('.playbackSoundBadge__titleContextContainer > div > a > span:nth-child(2)')[0]);
+    console.log(songTitle = $($(document).find('.playbackSoundBadge__titleContextContainer > div > a > span:nth-child(2)')[0]).text());
+    if (typeof ($($(document).find('.playbackSoundBadge__titleContextContainer > div > a > span:nth-child(2)')[0]).text()) === 'undefined' || $($(document).find('.playbackSoundBadge__titleContextContainer > div > a > span:nth-child(2)')[0]).text() === null) {
         songTitle = 'Paused';
     } else {
-        songTitle = $(document).find('.playbackSoundBadge__title').attr('title');
+        songTitle = $($(document).find('.playbackSoundBadge__titleContextContainer > div > a > span:nth-child(2)')[0]).text();
     }
 
     return {
@@ -182,7 +184,7 @@ function deezer() {
 // TODO: add the html shit
 function setSong() {
     var song = player();
-    if (song.song != '') {
+    if (song.song !== '') {
         $('.NowPlayingBody').text(song.song);
         sendToBackground(song.webPlayer, song.song);
     } else {
@@ -200,10 +202,10 @@ function init() {
         setSong();
         $('.NowPlayingSupported').text(website.replace("www.", "") + ' is supported!').css('color', 'green');
         $('.NowPlayingButton').click(function() {
-            if ($('.NowPlayingButton').text() == 'Start') {
+            if ($('.NowPlayingButton').text() === 'Start') {
                 $('.NowPlayingButton').text('Stop');
                 start();
-            } else if ($('.NowPlayingButton').text() == 'Stop') {
+            } else if ($('.NowPlayingButton').text() === 'Stop') {
                 $('.NowPlayingButton').text('Start');
                 stop();
             }
@@ -220,7 +222,7 @@ function start() {
 }
 
 function stop() {
-    if (interval != null) {
+    if (interval !== null) {
         clearInterval(interval);
         $(".NowPlayingButton").css("background-color", "#008CBA");
     }
