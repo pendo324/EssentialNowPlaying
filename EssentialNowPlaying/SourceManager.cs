@@ -91,6 +91,11 @@ namespace Essential_Now_Playing
                     wah = new WebAppHandler(path, preview, "Deezer");
                     wah.start();
                     break;
+                case "Plex":
+                    isWebPlayer = true;
+                    wah = new WebAppHandler(path, preview, "Plex");
+                    wah.start();
+                    break;
                 default:
                     break;
             }
