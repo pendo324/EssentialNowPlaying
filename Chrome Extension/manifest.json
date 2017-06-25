@@ -5,6 +5,8 @@
   "description": "Browser helper for the desktop application, Essential Now Playing",
   "version": "1.3.4",
 
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA99Oi3FT/5qqSlCyCWqUoHJorHuo6kHoGLe7xLYUjuEg1iYHGQs9aCVJd69/hGymc7VAnBWaq4ILLHlYqJSmsce324qh+IMyPNz/Qw7y96GXWiPBSKjRJD4RZ4uoce2GWarrgbHBSsa/ezL09FZXZ8pAhL5PhYvwN49zWqOwEao73r0oqpeb6lDsw+EWIpWSNZ/9SWKfidcpXH3YKQZwNTITnlb3cNbxx+LdliInEFj8+n91lA35jcaF1Pqt/GJri5irdIl/otZWaRCj3IuXqis4w8a6E8PHCRwZrPdi8lLJJ4yD5CGoNLxsq5pSMnOKPhZ55q00hGjBxNE2aKpdkPQIDAQAB",
+
   "icons": {
     "48": "icon.png"
   },
