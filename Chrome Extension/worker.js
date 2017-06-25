@@ -17,7 +17,8 @@ players = {
     "soundcloud": soundcloud,
     "tunein": tunein,
     "youtube": youtube,
-    "deezer": deezer
+    "deezer": deezer,
+    "app.plex.tv": plex
 };
 
 function mixcloud() {
@@ -42,7 +43,7 @@ function pandora() {
     var artist, song, songTitle;
     var wp = "Pandora";
 
-    if($('div.App').length) { //Checks if Pandora is the new player
+    if ($('div.App').length) { //Checks if Pandora is the new player
         if ($(document).find('.nowPlayingTopInfo__current__trackName').text() === undefined || $(document).find('.nowPlayingTopInfo__current__trackName').text() === null) {
             songTitle = 'Paused';
         } else {
@@ -138,7 +139,7 @@ function tunein() {
     };
 }
 
-//unfortunately there is no good way to determine an 'artist'
+// unfortunately there is no good way to determine an 'artist'
 function youtube() {
     var songTitle;
     var wp = "YouTube";
@@ -159,12 +160,32 @@ function deezer() {
     var artist, song, songTitle;
     var wp = "Deezer";
 
-    if($(document).find('.player-track-title').text() === undefined || $(document).find('.player-track-title').text() === null) {
+    if ($(document).find('.player-track-title').text() === undefined || $(document).find('.player-track-title').text() === null) {
         songTitle = 'Paused';
     } else {
         artist = $(document).find('.player-track-artist').text();
         song = $(document).find('.player-track-title').text();
         songTitle = artist.substr(3) + " - " + song;
+    }
+
+    return {
+        song: songTitle,
+        webPlayer: wp
+    };
+}
+
+function plex() {
+    var artist, song, songTitle;
+    var wp = 'Plex'
+
+    if (typeof($(document).find('.grandparent-title-container > button').text()) === 'undefined') {
+        songTitle = '';
+    } else if ($(document).find('.mini-controls-right > div:nth-child(3) > button.pause-btn.btn-link.btn-link-lg').hasClass('hidden')) {
+        songTitle = 'Paused';
+    } else {
+        artist = $(document).find('.grandparent-title-container > button').text();
+        song = $(document).find('.title-container > button').text();
+        songTitle = artist + ' - ' + song;
     }
 
     return {
@@ -195,7 +216,7 @@ function init() {
     if (s) {
         setSong();
         $('.NowPlayingSupported').text(website.replace("www.", "") + ' is supported!').css('color', 'green');
-        $('.NowPlayingButton').click(function() {
+        $('.NowPlayingButton').click(function () {
             if ($('.NowPlayingButton').text() === 'Start') {
                 $('.NowPlayingButton').text('Stop');
                 start();

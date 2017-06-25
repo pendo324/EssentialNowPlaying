@@ -134,6 +134,7 @@
             this.mediaPlayerBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.mediaPlayerBox.FormattingEnabled = true;
             this.mediaPlayerBox.Items.AddRange(new object[] {
+            "Deezer",
             "foobar2000",
             "Google Play",
             "iTunes",
@@ -141,14 +142,14 @@
             "Mixcloud",
             "MPC-HC",
             "Pandora",
+            "Plex",
             "Soundcloud",
             "Spotify",
             "Spotify (web)",
             "tunein",
             "VLC",
             "WinAmp",
-            "YouTube",
-            "Deezer"});
+            "YouTube"});
             this.mediaPlayerBox.Location = new System.Drawing.Point(8, 15);
             this.mediaPlayerBox.Name = "mediaPlayerBox";
             this.mediaPlayerBox.Size = new System.Drawing.Size(121, 21);
@@ -210,6 +211,7 @@
             this.defaultMediaBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.defaultMediaBox.FormattingEnabled = true;
             this.defaultMediaBox.Items.AddRange(new object[] {
+            "Deezer",
             "foobar2000",
             "Google Play",
             "iTunes",
@@ -217,14 +219,14 @@
             "Mixcloud",
             "MPC-HC",
             "Pandora",
+            "Plex",
             "Soundcloud",
             "Spotify",
             "Spotify (web)",
             "tunein",
             "VLC",
             "WinAmp",
-            "YouTube",
-            "Deezer"});
+            "YouTube"});
             this.defaultMediaBox.Location = new System.Drawing.Point(8, 29);
             this.defaultMediaBox.Name = "defaultMediaBox";
             this.defaultMediaBox.Size = new System.Drawing.Size(121, 21);
