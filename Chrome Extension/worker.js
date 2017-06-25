@@ -13,7 +13,7 @@ players = {
     "mixcloud": mixcloud,
     "pandora": pandora,
     "play.google.com": play,
-    "play.spotify.com": spotify,
+    "open.spotify.com": spotify,
     "soundcloud": soundcloud,
     "tunein": tunein,
     "youtube": youtube,
@@ -86,23 +86,17 @@ function play() {
 }
 
 function spotify() {
-    var artist, song, songTitle;
+    var songSelector, artist, song, songTitle;
     var wp = "Spotify";
-    var split = $('title').text().split(' - ');
 
-    if (split.length >= 3) {
-        artist = split[split.length - 2];
-        
-        if(split[0].substr(0,1) === "▶") {
-            split[0] = split[0].substr(1);
-            song = split.slice(0, split.length - 2).join(" - ");
-        } else {
-            song = split.slice(0, split.length - 2).join(" - ");
-        }
-
+    var isPlaying = $('.player-controls__buttons').find('.spoticon-pause-16').length ? true : false;
+    if (isPlaying) {
+        songSelector = $('.now-playing').find('.track-info');
+        artist = songSelector.find('.track-info__artists').find('a').text();
+        song = songSelector.find('.track-info__name').find('a').text();
         songTitle = artist + ' - ' + song;
     } else {
-        songTitle = "Paused";
+        songTitle = 'Paused'
     }
 
     return {
