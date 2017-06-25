@@ -18,7 +18,8 @@ players = {
     "tunein": tunein,
     "youtube": youtube,
     "deezer": deezer,
-    "app.plex.tv": plex
+    "app.plex.tv": plex,
+    'hypem': hypem
 };
 
 function mixcloud() {
@@ -192,6 +193,23 @@ function plex() {
         song: songTitle,
         webPlayer: wp
     };
+}
+
+function hypem() {
+    var songSelector, songTitle;
+    var wp = "Hype Machine";
+    
+    var isPlaying = $('#playerPlay').hasClass('pause');
+    if (isPlaying) {
+        songTitle = $('#player-nowplaying').children().slice(0,3).text();
+    } else {
+        songTitle = 'Paused';
+    }
+
+    return {
+        song: songTitle,
+        webPlayer: wp
+    }
 }
 
 // sets the song variable, send it to localhost and makes the 
