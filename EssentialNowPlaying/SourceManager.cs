@@ -96,6 +96,11 @@ namespace Essential_Now_Playing
                     wah = new WebAppHandler(path, preview, "Plex");
                     wah.start();
                     break;
+                case "Hype Machine":
+                    isWebPlayer = true;
+                    wah = new WebAppHandler(path, preview, "Hype Machine");
+                    wah.start();
+                    break;
                 default:
                     break;
             }
