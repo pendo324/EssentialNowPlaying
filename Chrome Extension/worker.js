@@ -145,10 +145,10 @@ function youtube() {
     var songTitle;
     var wp = "YouTube";
 
-    if ($(document).find('#eow-title').text() === undefined || $(document).find('#eow-title').text() === null) {
+    if ($(document).find('.title.ytd-video-primary-info-renderer > *').text() === undefined || $(document).find('.title.ytd-video-primary-info-renderer > *').text() === null) {
         songTitle = 'Paused';
     } else {
-        songTitle = $(document).find('#eow-title').text().trim();
+        songTitle = $(document).find('.title.ytd-video-primary-info-renderer > *').text().trim();
     }
 
     return {
