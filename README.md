@@ -3,6 +3,9 @@ A now playing tool intended to be used with OBS.
 
 So bascially its just something that I made to replace SMG. If anyone actually sees this and wants to request a player, just make an issue on the github page. 
 
+## NOTICE
+There is a new, rewritten version available here: https://github.com/pendo324/universal-np. I intend to add features to it much more regularly. It has most of the same features, and I really need people to test it pls.
+
 Currently supported:
   - Desktop (Windows [tested], *NIX [untested]):
     * Spotify
